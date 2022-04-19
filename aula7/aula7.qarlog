@@ -1,0 +1,38 @@
+Quartus Prime Archive log --	C:/Users/guilh/Documents/aula7/aula7.qarlog
+
+Archive:	C:/Users/guilh/Documents/aula7/aula7.qar
+Date:		Sun Apr 17 17:16:26 2022
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/guilh/Documents/aula7/ULASomaSub.vhd
+C:/Users/guilh/Documents/aula7/Waveform.vwf
+C:/Users/guilh/Documents/aula7/aula7.qpf
+C:/Users/guilh/Documents/aula7/aula7.qsf
+C:/Users/guilh/Documents/aula7/aula7.vhd
+C:/Users/guilh/Documents/aula7/buffer_3_state_1porta.vhd
+C:/Users/guilh/Documents/aula7/buffer_3_state_8portas.vhd
+C:/Users/guilh/Documents/aula7/conversorHex7Seg.vhd
+C:/Users/guilh/Documents/aula7/decoder.vhd
+C:/Users/guilh/Documents/aula7/decoder3x8.vhd
+C:/Users/guilh/Documents/aula7/edgeDetector.vhd
+C:/Users/guilh/Documents/aula7/flipflop.vhd
+C:/Users/guilh/Documents/aula7/memoriaRAM.vhd
+C:/Users/guilh/Documents/aula7/memoriaROM.vhd
+C:/Users/guilh/Documents/aula7/muxGenerico2x1.vhd
+C:/Users/guilh/Documents/aula7/muxGenerico4x1.vhd
+C:/Users/guilh/Documents/aula7/processador_aula.vhd
+C:/Users/guilh/Documents/aula7/registradorGenerico.vhd
+C:/Users/guilh/Documents/aula7/registradorRetorno.vhd
+C:/Users/guilh/Documents/aula7/somaConstante.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 21 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Tue Apr 19 19:02:39 2022
+Source archive file:	C:/Users/guilh/descomp_projRelogio/aula7/aula7.qar
+Archive was extracted into	C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/
+		 - successfully.
