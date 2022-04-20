@@ -1,0 +1,7 @@
+LDI $0   #Carrega o acumulador com o valor 0
+STA @288 #Armazena o valor do acumulador em HEX0
+STA @289 #Armazena o valor do acumulador em HEX1
+STA @290 #Armazena o valor do acumulador em HEX2
+STA @291 #Armazena o valor do acumulador em HEX3
+STA @292 #Armazena o valor do acumulador em HEX4
+STA @293 #Armazena o valor do acumulador em HEX5
