@@ -1,5 +1,5 @@
 Analysis & Synthesis report for aula7
-Tue Apr 19 19:05:19 2022
+Tue Apr 19 23:38:06 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -18,38 +18,40 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  10. General Register Statistics
  11. Parameter Settings for User Entity Instance: Top-level Entity: |aula7
  12. Parameter Settings for User Entity Instance: memoriaRAM:MemoriaRAM
- 13. Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao
- 14. Parameter Settings for User Entity Instance: processadoR_aula:processador
- 15. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico2x1:MUX1
- 16. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico4x1:MUXJMP
- 17. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:REGA
- 18. Parameter Settings for User Entity Instance: processadoR_aula:processador|flipflop:flipflop
- 19. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:End_retorno
- 20. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:PC
- 21. Parameter Settings for User Entity Instance: processadoR_aula:processador|somaConstante:incrementaPC
- 22. Parameter Settings for User Entity Instance: processadoR_aula:processador|ULASomaSub:ULA1
- 23. Parameter Settings for User Entity Instance: flipflop:flipflop1
- 24. Parameter Settings for User Entity Instance: flipflop:flipflop2
- 25. Parameter Settings for User Entity Instance: registradorGenerico:registrador_8bits
- 26. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit1
- 27. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit2
- 28. Port Connectivity Checks: "registradorGenerico:REG_4bit2"
- 29. Port Connectivity Checks: "registradorGenerico:REG_4bit1"
- 30. Port Connectivity Checks: "conversorHex7Seg:decoder_binario2"
- 31. Port Connectivity Checks: "conversorHex7Seg:decoder_binario1"
- 32. Port Connectivity Checks: "registradorGenerico:registrador_8bits"
- 33. Port Connectivity Checks: "flipflop:flipflop2"
- 34. Port Connectivity Checks: "flipflop:flipflop1"
- 35. Port Connectivity Checks: "decoder3x8:decoder_end"
- 36. Port Connectivity Checks: "decoder3x8:decoder_blocos"
- 37. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:PC"
- 38. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:End_retorno"
- 39. Port Connectivity Checks: "processadoR_aula:processador|flipflop:flipflop"
- 40. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:REGA"
- 41. Port Connectivity Checks: "processadoR_aula:processador|muxGenerico4x1:MUXJMP"
- 42. Post-Synthesis Netlist Statistics for Top Partition
- 43. Elapsed Time Per Partition
- 44. Analysis & Synthesis Messages
+ 13. Parameter Settings for User Entity Instance: flipflop:flipflop_debounce
+ 14. Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao
+ 15. Parameter Settings for User Entity Instance: processadoR_aula:processador
+ 16. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico2x1:MUX1
+ 17. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico4x1:MUXJMP
+ 18. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:REGA
+ 19. Parameter Settings for User Entity Instance: processadoR_aula:processador|flipflop:flipflop
+ 20. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:End_retorno
+ 21. Parameter Settings for User Entity Instance: processadoR_aula:processador|registradorGenerico:PC
+ 22. Parameter Settings for User Entity Instance: processadoR_aula:processador|somaConstante:incrementaPC
+ 23. Parameter Settings for User Entity Instance: processadoR_aula:processador|ULASomaSub:ULA1
+ 24. Parameter Settings for User Entity Instance: flipflop:flipflop1
+ 25. Parameter Settings for User Entity Instance: flipflop:flipflop2
+ 26. Parameter Settings for User Entity Instance: registradorGenerico:registrador_8bits
+ 27. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit1
+ 28. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit2
+ 29. Port Connectivity Checks: "registradorGenerico:REG_4bit2"
+ 30. Port Connectivity Checks: "registradorGenerico:REG_4bit1"
+ 31. Port Connectivity Checks: "conversorHex7Seg:decoder_binario2"
+ 32. Port Connectivity Checks: "conversorHex7Seg:decoder_binario1"
+ 33. Port Connectivity Checks: "registradorGenerico:registrador_8bits"
+ 34. Port Connectivity Checks: "flipflop:flipflop2"
+ 35. Port Connectivity Checks: "flipflop:flipflop1"
+ 36. Port Connectivity Checks: "decoder3x8:decoder_end"
+ 37. Port Connectivity Checks: "decoder3x8:decoder_blocos"
+ 38. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:PC"
+ 39. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:End_retorno"
+ 40. Port Connectivity Checks: "processadoR_aula:processador|flipflop:flipflop"
+ 41. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:REGA"
+ 42. Port Connectivity Checks: "processadoR_aula:processador|muxGenerico4x1:MUXJMP"
+ 43. Port Connectivity Checks: "flipflop:flipflop_debounce"
+ 44. Post-Synthesis Netlist Statistics for Top Partition
+ 45. Elapsed Time Per Partition
+ 46. Analysis & Synthesis Messages
 
 
 
@@ -76,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Apr 19 19:05:19 2022       ;
+; Analysis & Synthesis Status     ; Successful - Tue Apr 19 23:38:06 2022       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; aula7                                       ;
 ; Top-level Entity Name           ; aula7                                       ;
@@ -216,6 +218,7 @@ https://fpgasoftware.intel.com/eula.
 ; memoriaROM.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/memoriaROM.vhd             ;         ;
 ; memoriaRAM.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/memoriaRAM.vhd             ;         ;
 ; flipflop.vhd                     ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/flipflop.vhd               ;         ;
+; edgeDetector.vhd                 ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/edgeDetector.vhd           ;         ;
 ; decoder.vhd                      ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/decoder.vhd                ;         ;
 ; aula7.vhd                        ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd                  ;         ;
 ; decoder3x8.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/decoder3x8.vhd             ;         ;
@@ -281,6 +284,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; registradorGenerico:REG_4bit2|DOUT[2]                                   ; Merged with registradorGenerico:REG_4bit1|DOUT[2] ;
 ; registradorGenerico:REG_4bit2|DOUT[1]                                   ; Merged with registradorGenerico:REG_4bit1|DOUT[1] ;
 ; registradorGenerico:REG_4bit2|DOUT[0]                                   ; Merged with registradorGenerico:REG_4bit1|DOUT[0] ;
+; flipflop:flipflop_debounce|DOUT                                         ; Lost fanout                                       ;
+; edgeDetector:edgeDetector|saidaQ                                        ; Lost fanout                                       ;
 ; processadoR_aula:processador|registradorGenerico:End_retorno|DOUT[0]    ; Stuck at GND due to stuck port clock_enable       ;
 ; processadoR_aula:processador|flipflop:flipflop|DOUT                     ; Stuck at GND due to stuck port clock_enable       ;
 ; processadoR_aula:processador|registradorGenerico:End_retorno|DOUT[1..8] ; Stuck at GND due to stuck port clock_enable       ;
@@ -288,7 +293,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; flipflop:flipflop2|DOUT                                                 ; Stuck at GND due to stuck port clock_enable       ;
 ; flipflop:flipflop1|DOUT                                                 ; Stuck at GND due to stuck port clock_enable       ;
 ; processadoR_aula:processador|registradorGenerico:REGA|DOUT[4..7]        ; Lost fanout                                       ;
-; Total Number of Removed Registers = 28                                  ;                                                   ;
+; Total Number of Removed Registers = 30                                  ;                                                   ;
 +-------------------------------------------------------------------------+---------------------------------------------------+
 
 
@@ -297,6 +302,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------+--------------------------------+---------------------------------------------------------------+
 ; Register name                                 ; Reason for Removal             ; Registers Removed due to This Register                        ;
 +-----------------------------------------------+--------------------------------+---------------------------------------------------------------+
+; flipflop:flipflop_debounce|DOUT               ; Lost Fanouts                   ; edgeDetector:edgeDetector|saidaQ                              ;
 ; registradorGenerico:registrador_8bits|DOUT[4] ; Stuck at GND                   ; processadoR_aula:processador|registradorGenerico:REGA|DOUT[4] ;
 ;                                               ; due to stuck port clock_enable ;                                                               ;
 ; registradorGenerico:registrador_8bits|DOUT[5] ; Stuck at GND                   ; processadoR_aula:processador|registradorGenerico:REGA|DOUT[5] ;
@@ -343,6 +349,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; datawidth      ; 8     ; Signed Integer                            ;
 ; addrwidth      ; 6     ; Signed Integer                            ;
 +----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: flipflop:flipflop_debounce ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; larguradados   ; 1     ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -634,6 +650,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------------+-------+----------+----------------------------------------------+
 
 
++--------------------------------------------------------+
+; Port Connectivity Checks: "flipflop:flipflop_debounce" ;
++--------+-------+----------+----------------------------+
+; Port   ; Type  ; Severity ; Details                    ;
++--------+-------+----------+----------------------------+
+; din    ; Input ; Info     ; Stuck at VCC               ;
+; enable ; Input ; Info     ; Stuck at VCC               ;
++--------+-------+----------+----------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
@@ -677,7 +703,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 19 19:05:11 2022
+    Info: Processing started: Tue Apr 19 23:37:58 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off aula7 -c aula7
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file processador_aula.vhd
@@ -733,22 +759,23 @@ Info (12021): Found 2 design units, including 1 entities, in source file convers
     Info (12022): Found design unit 1: conversorHex7Seg-comportamento File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/conversorHex7Seg.vhd Line: 17
     Info (12023): Found entity 1: conversorHex7Seg File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/conversorHex7Seg.vhd Line: 4
 Info (12127): Elaborating entity "aula7" for the top level hierarchy
-Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 68
-Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 71
-Info (12128): Elaborating entity "processadoR_aula" for hierarchy "processadoR_aula:processador" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 75
+Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 70
+Info (12128): Elaborating entity "edgeDetector" for hierarchy "edgeDetector:edgeDetector" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 76
+Info (12128): Elaborating entity "flipflop" for hierarchy "flipflop:flipflop_debounce" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 80
+Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 85
+Info (12128): Elaborating entity "processadoR_aula" for hierarchy "processadoR_aula:processador" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 89
 Info (12128): Elaborating entity "muxGenerico2x1" for hierarchy "processadoR_aula:processador|muxGenerico2x1:MUX1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 53
 Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "processadoR_aula:processador|muxGenerico4x1:MUXJMP" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 62
 Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:REGA" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 71
-Info (12128): Elaborating entity "flipflop" for hierarchy "processadoR_aula:processador|flipflop:flipflop" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 75
 Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:End_retorno" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 80
 Info (12128): Elaborating entity "somaConstante" for hierarchy "processadoR_aula:processador|somaConstante:incrementaPC" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 88
 Info (12128): Elaborating entity "ULASomaSub" for hierarchy "processadoR_aula:processador|ULASomaSub:ULA1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 92
 Info (12128): Elaborating entity "decoder" for hierarchy "processadoR_aula:processador|decoder:decoder" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/processador_aula.vhd Line: 96
-Info (12128): Elaborating entity "decoder3x8" for hierarchy "decoder3x8:decoder_blocos" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 78
-Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoder_binario1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 95
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG_4bit1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 103
-Info (12128): Elaborating entity "buffer_3_state_8portas" for hierarchy "buffer_3_state_8portas:buffer_3state" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 110
-Info (12128): Elaborating entity "buffer_3_state_1porta" for hierarchy "buffer_3_state_1porta:buffer_3state_1SW8" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 116
+Info (12128): Elaborating entity "decoder3x8" for hierarchy "decoder3x8:decoder_blocos" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 92
+Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoder_binario1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 109
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG_4bit1" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 117
+Info (12128): Elaborating entity "buffer_3_state_8portas" for hierarchy "buffer_3_state_8portas:buffer_3state" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 124
+Info (12128): Elaborating entity "buffer_3_state_1porta" for hierarchy "buffer_3_state_1porta:buffer_3state_1SW8" File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 130
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276007): RAM logic "memoriaRAM:MemoriaRAM|ram" is uninferred due to asynchronous read logic File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/memoriaRAM.vhd Line: 28
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
@@ -772,7 +799,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 16
     Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/guilh/descomp_projRelogio/aula7/aula7_restored/aula7.vhd Line: 16
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 4 registers lost all their fanouts during netlist optimizations.
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 11 input pin(s) that do not drive logic
@@ -792,9 +819,9 @@ Info (21057): Implemented 101 device resources after synthesis - the final resou
     Info (21059): Implemented 33 output pins
     Info (21061): Implemented 52 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 4899 megabytes
-    Info: Processing ended: Tue Apr 19 19:05:19 2022
+    Info: Peak virtual memory: 4885 megabytes
+    Info: Processing ended: Tue Apr 19 23:38:06 2022
     Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Total CPU time (on all processors): 00:00:18
 
 
