@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "04/19/2022 19:05:56"
+-- DATE "04/19/2022 23:38:48"
 
 -- 
 -- Device: Altera 5CEBA4F23C7 Package FBGA484
@@ -41,11 +41,11 @@ ENTITY 	aula7 IS
 	CLOCK_50 : IN std_logic;
 	rst : IN std_logic;
 	KEY : IN std_logic_vector(3 DOWNTO 0);
-	LEDR : OUT std_logic_vector(9 DOWNTO 0);
-	PC_OUT : OUT std_logic_vector(8 DOWNTO 0);
+	LEDR : BUFFER std_logic_vector(9 DOWNTO 0);
+	PC_OUT : BUFFER std_logic_vector(8 DOWNTO 0);
 	SW : IN std_logic_vector(9 DOWNTO 0);
-	sevenseg1 : OUT std_logic_vector(6 DOWNTO 0);
-	sevenseg2 : OUT std_logic_vector(6 DOWNTO 0)
+	sevenseg1 : BUFFER std_logic_vector(6 DOWNTO 0);
+	sevenseg2 : BUFFER std_logic_vector(6 DOWNTO 0)
 	);
 END aula7;
 
