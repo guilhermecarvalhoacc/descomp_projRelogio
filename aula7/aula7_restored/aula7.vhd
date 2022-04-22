@@ -137,7 +137,7 @@ buffer_3state      : entity work.buffer_3_state_8portas
 buffer_3state_1SW8 : entity work.buffer_3_state_1porta
           port map (entrada => SW(8), habilita => habilita_sw8, saida => dadolidoRAM(0));
 			 
-buffer_3state_1SW9 : entity work.bufer_3_state_1porta
+buffer_3state_1SW9 : entity work.buffer_3_state_1porta
           port map (entrada => SW(9), habilita => habilita_sw9, saida => dadolidoRAM(0));
 
 buffer_3state_KEY0 : entity work.buffer_3_state_1porta
@@ -152,7 +152,7 @@ buffer_3state_KEY2 : entity work.buffer_3_state_1porta
 buffer_3state_KEY3 : entity work.buffer_3_state_1porta
           port map (entrada => KEY(3), habilita => habilita_KEY3, saida => dadolidoRAM(0));		 
  
-buffer_FPGA_RESET : entity work.buffe_3_state_1porta
+buffer_FPGA_RESET : entity work.buffer_3_state_1porta
           port map (entrada => KEY(3), habilita => habilita_FPGA_RESET, saida => dadolidoRAM(0));		
 
  
