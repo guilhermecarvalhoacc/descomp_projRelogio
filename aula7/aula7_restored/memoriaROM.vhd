@@ -8,8 +8,8 @@ entity memoriaROM is
           addrWidth: natural := 9
     );
    port (
-          Endereco : in std_logic_vector (addrWidth-1 DOWNTO 0);
-          Dado : out std_logic_vector (dataWidth-1 DOWNTO 0)
+          Endereco : in  std_logic_vector (addrWidth-1 DOWNTO 0);
+          Dado     : out std_logic_vector (dataWidth-1 DOWNTO 0)
     );
 end entity;
 
@@ -21,13 +21,13 @@ architecture assincrona of memoriaROM is
 	constant LDA  : std_logic_vector(3 downto 0) := "0001";
 	constant SOMA : std_logic_vector(3 downto 0) := "0010";
 	constant SUB  : std_logic_vector(3 downto 0) := "0011";
-	constant LDI : std_logic_vector(3 downto 0) := "0100";
-	constant STA : std_logic_vector(3 downto 0) := "0101";
-	constant JMP : std_logic_vector(3 downto 0) := "0110";
-	constant JSR : std_logic_vector(3 downto 0) := "1001";
-	constant RET : std_logic_vector(3 downto 0) := "1010";
-	constant JEQ : std_logic_vector(3 downto 0) := "0111";
-	constant CEQ : std_logic_vector(3 downto 0) := "1000";
+	constant LDI  : std_logic_vector(3 downto 0) := "0100";
+	constant STA  : std_logic_vector(3 downto 0) := "0101";
+	constant JMP  : std_logic_vector(3 downto 0) := "0110";
+	constant JSR  : std_logic_vector(3 downto 0) := "1001";
+	constant RET  : std_logic_vector(3 downto 0) := "1010";
+	constant JEQ  : std_logic_vector(3 downto 0) := "0111";
+	constant CEQ  : std_logic_vector(3 downto 0) := "1000";
 
   
   function initMemory
@@ -79,25 +79,21 @@ architecture assincrona of memoriaROM is
 
 --teste da aula 8:
 
-		tmp(0) := LDI & "0" & "00000001";
-		tmp(1) := STA & "0" & "00000000"; 
-		tmp(2) := SOMA & "0" & "00000000"; 
-		tmp(3) := STA & "1" & "00100000"; 
-		tmp(4) := SOMA & "0" & "00000000"; 
-		tmp(5) := STA & "1" & "00100001"; 
-		tmp(6) := SOMA & "0" & "00000000";
-		tmp(7) := STA & "1" & "00100010";
-		tmp(8) := SOMA  & "0" & "00000000";
-		tmp(9) := STA  & "1" & "00100011";
+		tmp(0)  := LDI   & "0" & "00000001";
+		tmp(1)  := STA   & "0" & "00000000"; 
+		tmp(2)  := SOMA  & "0" & "00000000"; 
+		tmp(3)  := STA   & "1" & "00100000"; 
+		tmp(4)  := SOMA  & "0" & "00000000"; 
+		tmp(5)  := STA   & "1" & "00100001"; 
+		tmp(6)  := SOMA  & "0" & "00000000";
+		tmp(7)  := STA   & "1" & "00100010";
+		tmp(8)  := SOMA  & "0" & "00000000";
+		tmp(9)  := STA   & "1" & "00100011";
 		tmp(10) := SOMA  & "0" & "00000000";
-		tmp(11) := STA  & "1" & "00100100";
+		tmp(11) := STA   & "1" & "00100100";
 		tmp(12) := SOMA  & "0" & "00000000";
-		tmp(13) := STA  & "1" & "00100101";
-		tmp(14) := JMP  & "0" & "00000010";
-
-
-
-		
+		tmp(13) := STA   & "1" & "00100101";
+		tmp(14) := JMP   & "0" & "00000010";
         return tmp;
     end initMemory;
 
