@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 entity aula7 is
   generic   (
-    DATA_WIDTH  : natural :=  8;
-    ADDR_WIDTH  : natural :=  9;
-    simulacao   : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
+    DataWidth   : natural :=  8;
+    AddrWidth   : natural :=  13;
+    simulacao   : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
 
   port   (
@@ -18,11 +18,16 @@ entity aula7 is
   PC_OUT          : out std_logic_vector(8 downto 0);
   ulaB_verifica   : out std_logic_vector(7 downto 0);
   ulaA_verifica   : out std_logic_vector(7 downto 0);
-  DadoInRAM       : out std_logic_vector(7 downto 0);
   KEY             : in  std_logic_vector(3 downto 0);
   SW              : in  std_logic_vector(9 downto 0);
   HEX0,HEX1,HEX2  : out std_logic_vector(6 downto 0);
-  HEX3,HEX4,HEX5  : out std_logic_vector(6 downto 0)
+  HEX3,HEX4,HEX5  : out std_logic_vector(6 downto 0);
+  
+  -- Debugar
+  dbgInstructionROM: out std_logic_vector(AddrWidth-1 downto 0);
+  dbgEntradaRAM    : out std_logic_vector(DataWidth-1 downto 0);
+  dbgSaidaRAM      : out std_logic_vector(DataWidth-1 downto 0)
+
   );
 
 end entity;
@@ -30,7 +35,7 @@ end entity;
 
 architecture arch_name of aula7 is
   signal clk                      : std_logic;
-  signal dadoROM                  : std_logic_vector (12 downto 0);
+  signal dadoROM                  : std_logic_vector (AddrWidth-1 downto 0);
   signal enderecoROM              : std_logic_vector (8 downto 0);
   signal leituraRAM               : std_logic;
   signal EscritaRAM               : std_logic;
@@ -67,17 +72,24 @@ architecture arch_name of aula7 is
   signal habilita_KEY2            : std_logic;
   signal habilita_KEY3            : std_logic;
   signal habilita_FPGA_RESET      : std_logic;
+  
+  -- Debounce
+  signal clock_flipflop: std_logic;
+  signal saida_debounce: std_logic;
+  signal limpa_leitura : std_logic;
 
+
+  
 begin
 
---gravar:  if simulacao generate
---clk <= KEY(0);
---else generate
---detectorSub0: work.edgeDetector(bordaSubida)
---        port map (clk => CLOCK_50, entrada => (not KEY(0)), saida => clk);
---end generate;
+gravar:  if simulacao generate
+	clk <= KEY(0);
+else generate
+	detectorSub0: work.edgeDetector(bordaSubida)
+	port map (clk => CLOCK_50, entrada => (not KEY(0)), saida => clk);
+end generate;
 
-clk<=CLOCK_50;
+--clk<=CLOCK_50;
 
 
 ROM_instrucao : entity work.memoriaROM 
@@ -86,8 +98,8 @@ ROM_instrucao : entity work.memoriaROM
 MemoriaRAM : entity work.memoriaRAM 
 	port map (
 		 addr     => enderecoRAM(5 downto 0),
-		 re       =>leituraRAM,
-		 we       =>EscritaRAM,
+		 re       => leituraRAM,
+		 we       => EscritaRAM,
 		 habilita => saidas_decoder(0),
 		 dado_in  => dadoEscritoRAM,
 		 dado_out => dadolidoRAM,
@@ -168,16 +180,16 @@ REG_4bit5 : entity work.registradorGenerico   generic map (larguraDados => 4)
 -- Buffers
 
 buffer_3state : entity work.buffer_3_state_8portas
-          port map (entrada => SW(7 downto 0) , habilita => habilita_buffer, saida => dadolidoRAM);
+          port map (entrada => SW(7 downto 0), habilita => habilita_buffer, saida => dadolidoRAM);
 			 
 buffer_3state_1SW8 : entity work.buffer_3_state_1porta
-          port map (entrada =>SW(8) , habilita => habilita_sw8, saida => dadolidoRAM);
+          port map (entrada =>SW(8), habilita => habilita_sw8, saida => dadolidoRAM);
 			 
 buffer_3state_1SW9 : entity work.buffer_3_state_1porta
           port map (entrada =>SW(9), habilita => habilita_sw9, saida => dadolidoRAM);
 
 buffer_3state_KEY0 : entity work.buffer_3_state_1porta
-          port map (entrada =>KEY(0), habilita => habilita_KEY0, saida => dadolidoRAM);
+          port map (entrada => saida_debounce, habilita => habilita_KEY0, saida => dadolidoRAM);
 
 buffer_3state_KEY1 : entity work.buffer_3_state_1porta
           port map (entrada =>KEY(1), habilita => habilita_KEY1, saida => dadolidoRAM);		 
@@ -192,6 +204,15 @@ buffer_3state_KEY3 : entity work.buffer_3_state_1porta
  
 buffer_FPGA_RESET : entity work.buffer_3_state_1porta
           port map (entrada => FPGA_RESET_N, habilita => habilita_FPGA_RESET, saida => dadolidoRAM);		
+
+-- debounce
+edgeDetector : entity work.edgeDetector 
+          port map (clk => CLOCK_50, entrada => NOT KEY(0) , saida => clock_flipflop);
+
+
+flipflop_debounce : entity work.flipflop   generic map (larguraDados => 1)
+          port map (DIN => '1', DOUT => saida_debounce, ENABLE => '1', CLK => clock_flipflop, RST => limpa_leitura);
+
 
  
 	
@@ -222,12 +243,16 @@ habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2
 habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
 habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
 
+limpa_leitura <= enderecoRAM(0) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and leituraRAM;
+
 PC_OUT        <= enderecoROM;
 ulaB_verifica <= ulaB_verifica;
 ulaA_verifica <= ulaA_verifica;
 
-DadoInRAM     <= dadolidoRAM;
+dbgSaidaRAM   <= dadolidoRAM;
+dbgEntradaRAM <= dadoEscritoRAM;
 HabilitaRam   <= saidas_decoder(0);
 read_ram      <= leituraRAM;
+dbgInstructionROM <= dadoROM;
 
 end architecture;

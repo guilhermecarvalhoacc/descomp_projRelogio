@@ -4,6 +4,14 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "HabilitaRam",
+					"strict" : false
+				},
+				{
+					"name" : "read_ram",
+					"strict" : false
+				},
+				{
 					"name" : "LEDR[0]",
 					"strict" : false
 				},
@@ -77,6 +85,70 @@
 				},
 				{
 					"name" : "PC_OUT[8]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[6]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaB_verifica[7]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[6]",
+					"strict" : false
+				},
+				{
+					"name" : "ulaA_verifica[7]",
 					"strict" : false
 				},
 				{
@@ -248,111 +320,103 @@
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[0]",
+					"name" : "dbgInstructionROM[0]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[1]",
+					"name" : "dbgInstructionROM[1]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[2]",
+					"name" : "dbgInstructionROM[2]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[3]",
+					"name" : "dbgInstructionROM[5]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[4]",
+					"name" : "dbgInstructionROM[6]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[5]",
+					"name" : "dbgInstructionROM[8]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[6]",
+					"name" : "dbgInstructionROM[9]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[7]",
+					"name" : "dbgInstructionROM[10]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[0]",
+					"name" : "dbgInstructionROM[11]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[1]",
+					"name" : "dbgEntradaRAM[0]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[2]",
+					"name" : "dbgEntradaRAM[1]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[3]",
+					"name" : "dbgEntradaRAM[2]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[4]",
+					"name" : "dbgEntradaRAM[3]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[5]",
+					"name" : "dbgEntradaRAM[4]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[6]",
+					"name" : "dbgEntradaRAM[5]",
 					"strict" : false
 				},
 				{
-					"name" : "ulaA_verifica[7]",
+					"name" : "dbgEntradaRAM[6]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[0]",
+					"name" : "dbgEntradaRAM[7]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[1]",
+					"name" : "dbgSaidaRAM[0]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[2]",
+					"name" : "dbgSaidaRAM[1]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[3]",
+					"name" : "dbgSaidaRAM[2]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[4]",
+					"name" : "dbgSaidaRAM[3]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[5]",
+					"name" : "dbgSaidaRAM[4]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[6]",
+					"name" : "dbgSaidaRAM[5]",
 					"strict" : false
 				},
 				{
-					"name" : "DadoInRAM[7]",
+					"name" : "dbgSaidaRAM[6]",
 					"strict" : false
 				},
 				{
-					"name" : "HabilitaRam",
-					"strict" : false
-				},
-				{
-					"name" : "read_ram",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[3]",
+					"name" : "dbgSaidaRAM[7]",
 					"strict" : false
 				},
 				{
@@ -360,11 +424,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[1]",
+					"name" : "SW[8]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[2]",
+					"name" : "KEY[1]",
 					"strict" : false
 				},
 				{
@@ -376,11 +440,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[8]",
+					"name" : "KEY[2]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
@@ -409,6 +473,10 @@
 				},
 				{
 					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{

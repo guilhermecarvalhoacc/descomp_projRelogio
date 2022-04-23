@@ -101,23 +101,24 @@ architecture assincrona of memoriaROM is
 
 
 -- testando keys e sw da aula8 :
-		tmp(0)  := LDA 	& "101000000";  -- LDA @320
-		tmp(1)  := STA 	& "100100000";  -- STA @288
-		tmp(2)  := LDA 	& "101000001";  -- LDA @321
-		tmp(3)  := STA 	& "100100001";  -- STA @289
-		tmp(4)  := LDA 	& "101000010";  -- LDA @322 
-		tmp(5)  := STA 	& "100100010";  -- STA @290
-		tmp(6)  := LDA  & "101100000";  -- LDA @352
-		tmp(7)  := STA 	& "100100011";  -- STA @291
-		tmp(8)  := LDA  & "101100001";  -- LDA @353
-		tmp(9)  := STA 	& "100100100";  -- STA @292
-		tmp(10) := LDA  & "101100010";  -- LDA @354
-		tmp(11) := STA 	& "100100101";  -- STA @293 
-		tmp(12) := LDA  & "101100011";  -- LDA @355
-		tmp(13) := STA 	& "100000001";  -- STA @257 
-		tmp(14) := LDA  & "101100100";  -- LDA @356
-		tmp(15) := STA 	& "100000010";  -- STA @258 
-		tmp(16) := JMP  & "000000000";  -- JMP @0
+			tmp(0) := "0001101000000";	-- LDA @320			#Carrega o acumulador com a leitura das chaves SW0 até SW7
+			tmp(1) := "0101100100000";	-- STA @288			#Armazena o valor do acumulador no display HEX0
+			tmp(2) := "0001101000001";	-- LDA @321			#Carrega o acumulador com a leitura da chave SW8
+			tmp(3) := "0101100100001";	-- STA @289			#Armazena o valor do acumulador no display HEX1
+			tmp(4) := "0001101000010";	-- LDA @322			#Carrega o acumulador com a leitura da chave SW9
+			tmp(5) := "0101100100010";	-- STA @290			#Armazena o valor do acumulador no display HEX2
+			tmp(6) := "0001101100000";	-- LDA @352			#Carrega o acumulador com a leitura do botão KEY0
+			tmp(7) := "0101100100011";	-- STA @291			#Armazena o valor do acumulador no display HEX3
+			tmp(8) := "0001101100001";	-- LDA @353			#Carrega o acumulador com a leitura do botão KEY1
+			tmp(9) := "0101100100100";	-- STA @292			#Armazena o valor do acumulador no display HEX4
+			tmp(10) := "0001101100010";	-- LDA @354			#Carrega o acumulador com a leitura do botão KEY2
+			tmp(11) := "0101100100101";	-- STA @293			#Armazena o valor do acumulador no display HEX5
+			tmp(12) := "0001101100011";	-- LDA @355			#Carrega o acumulador com a leitura do botão KEY3
+			tmp(13) := "0101100000001";	-- STA @257			#Armazena o valor do bit0 do acumulador no LDR8
+			tmp(14) := "0001101100100";	-- LDA @356			#Carrega o acumulador com a leitura do botão FPGA_RESET
+			tmp(15) := "0101100000010";	-- STA @258			#Armazena o valor do bit0 do acumulador no LDR9
+			tmp(16) := "0110000000000";	-- JMP @0				#Desvia e continua atualizando os valores das entradas nas saídas
+
         return tmp;
     end initMemory;
 
