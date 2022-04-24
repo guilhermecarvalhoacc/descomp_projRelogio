@@ -1,7 +1,22 @@
 LDI $0   #Carrega o acumulador com o valor 0
-STA @288 #Armazena o valor do acumulador em HEX0
-STA @289 #Armazena o valor do acumulador em HEX1
-STA @290 #Armazena o valor do acumulador em HEX2
-STA @291 #Armazena o valor do acumulador em HEX3
-STA @292 #Armazena o valor do acumulador em HEX4
-STA @293 #Armazena o valor do acumulador em HEX5
+STA @HEX0 #Armazena o valor do acumulador em HEX0
+STA @HEX1 #Armazena o valor do acumulador em HEX1
+STA @HEX2 #Armazena o valor do acumulador em HEX2
+STA @HEX3 #Armazena o valor do acumulador em HEX3
+STA @HEX4 #Armazena o valor do acumulador em HEX4
+STA @HEX5 #Armazena o valor do acumulador em HEX5
+STA @LEDR0 #Armazena o valor do acumulador no LDR0 ~ LEDR7
+STA @LEDR8 #Armazena o valor do acumulador no LDR8
+STA @LEDR9 #Armazena o valor do acumulador no LDR9
+STA @0   #Armazena o valor do acumulador em MEM[0] (unidades)
+STA @1   #Armazena o valor do acumulador em MEM[1] (dezenas)
+STA @2   #Armazena o valor do acumulador em MEM[2] (centenas)
+STA @3   #Armazena o valor do acumulador em MEM[3] (milhares)
+STA @4   #Armazena o valor do acumulador em MEM[4] (dezenas de milhares)
+STA @5   #Armazena o valor do acumulador em MEM[5] (centenas de milhares)
+STA @6   #Armazena o valor 0 constante do acumulador em MEM[6]
+STA @9   #Armazena o valor 0 como inicializacao da flag_inibir_contagem em MEM[9]
+LDI $1   #Carrega o acumulador com o valor 1
+STA @7   #Armazena o valor 1 constante do acumulador em MEM[7]
+LDI $10  #Carrega o acumulador com o valor 10
+STA @8   #Armazena o valor 10 constante do acumulador em MEM[8]

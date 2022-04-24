@@ -87,10 +87,18 @@ mne =	{
 
 #Converte o valor após o caractere arroba '@'
 #em um valor binario
-def  converteArroba(line):
+def  converteArroba(line, dicionario):
     line = line.split('@')
-    line[1] = bin(int(line[1]))[2:].upper().zfill(9)
-    line = ''.join(line)
+    
+    if line[1] in list(dicionario.keys()):
+        print(line[1])
+        print(dicionario[line[1]])
+        line[1] = bin(int(dicionario[line[1]]))[2:].upper().zfill(9)
+        line = ''.join(line)
+
+    else:
+        line[1] = bin(int(line[1]))[2:].upper().zfill(9)
+        line = ''.join(line)
     return line
  
 #Converte o valor após o caractere cifrão'$'
@@ -129,8 +137,40 @@ def trataMnemonico(line):
     return line
 
 def main():
-    assembly = 'ASM.txt' #Arquivo de entrada de contem o assembly
+    assembly = 'assembly.txt' #Arquivo de entrada de contem o assembly
     destinoBIN = 'BIN.txt' #Arquivo de saída que contem o binário formatado para VHDL
+
+    dic_traducao_codigos = {"HEX0"       : "288",
+                            "HEX1"       : "289",
+                            "HEX2"       : "290",
+                            "HEX3"       : "291",
+                            "HEX4"       : "292",
+                            "HEX5"       : "293",
+                            "LEDR0"      : "256",
+                            "LEDR1"      : "256",
+                            "LEDR2"      : "256",
+                            "LEDR3"      : "256",
+                            "LEDR4"      : "256",
+                            "LEDR5"      : "256",
+                            "LEDR6"      : "256",
+                            "LEDR7"      : "256",
+                            "LEDR8"      : "257",
+                            "LEDR9"      : "258",
+                            "SW0"        : "320",
+                            "SW1"        : "320",
+                            "SW2"        : "320",
+                            "SW3"        : "320",
+                            "SW4"        : "320",
+                            "SW5"        : "320",
+                            "SW6"        : "320",
+                            "SW7"        : "320",
+                            "SW8"        : "321",
+                            "SW9"        : "322",
+                            "KEY0"       : "352",
+                            "KEY1"       : "353",
+                            "KEY2"       : "354",
+                            "KEY3"       : "355",
+                            "FPGA_RESET" : "356"}
 
     with open(assembly, "r") as f: #Abre o arquivo ASM
         lines = f.readlines() #Verifica a quantidade de linhas
@@ -153,7 +193,7 @@ def main():
                 instrucaoLine = trataMnemonico(instrucaoLine) #Trata o mnemonico. Ex(JSR @14): x"9" @14
                     
                 if '@' in instrucaoLine: #Se encontrar o caractere arroba '@' 
-                    instrucaoLine = converteArroba(instrucaoLine) #converte o número após o caractere Ex(JSR @14): x"9" x"0E"
+                    instrucaoLine = converteArroba(instrucaoLine, dic_traducao_codigos) #converte o número após o caractere Ex(JSR @14): x"9" x"0E"
                         
                 elif '$' in instrucaoLine: #Se encontrar o caractere cifrao '$' 
                     instrucaoLine = converteCifrao(instrucaoLine) #converte o número após o caractere Ex(LDI $5): x"4" x"05"
@@ -170,7 +210,7 @@ def main():
                 cont+=1 #Incrementa a variável de contagem, utilizada para incrementar as posições de memória no VHDL
                 f.write(line) #Escreve no arquivo BIN.txt
                 
-                print(line,end = '') #Print apenas para debug
+                #print(line,end = '') #Print apenas para debug
 
 if __name__ == "__main__":
     print("[+] Iniciando assembler...\n")
