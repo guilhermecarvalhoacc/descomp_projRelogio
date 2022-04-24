@@ -129,7 +129,7 @@ def trataMnemonico(line):
     return line
 
 def main():
-    assembly = 'ASM.txt' #Arquivo de entrada de contem o assembly
+    assembly = 'assembly.txt' #Arquivo de entrada de contem o assembly
     destinoBIN = 'BIN.txt' #Arquivo de saída que contem o binário formatado para VHDL
 
     with open(assembly, "r") as f: #Abre o arquivo ASM

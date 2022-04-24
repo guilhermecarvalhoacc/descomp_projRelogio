@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "04/19/2022 18:36:13"
+-- DATE "04/22/2022 12:21:28"
 
 -- 
 -- Device: Altera 5CEBA4F23C7 Package FBGA484
@@ -41,20 +41,20 @@ ENTITY 	aula7 IS
 	CLOCK_50 : IN std_logic;
 	FPGA_RESET_N : IN std_logic;
 	KEY : IN std_logic_vector(3 DOWNTO 0);
-	LEDR : OUT std_logic_vector(9 DOWNTO 0);
-	PC_OUT : OUT std_logic_vector(8 DOWNTO 0);
+	LEDR : BUFFER std_logic_vector(9 DOWNTO 0);
+	PC_OUT : BUFFER std_logic_vector(8 DOWNTO 0);
 	SW : IN std_logic_vector(9 DOWNTO 0);
-	HEX0 : OUT std_logic_vector(6 DOWNTO 0);
-	HEX1 : OUT std_logic_vector(6 DOWNTO 0);
-	HEX2 : OUT std_logic_vector(6 DOWNTO 0);
-	HEX3 : OUT std_logic_vector(6 DOWNTO 0);
-	HEX4 : OUT std_logic_vector(6 DOWNTO 0);
-	HEX5 : OUT std_logic_vector(6 DOWNTO 0);
-	ulaB_verifica : OUT std_logic_vector(7 DOWNTO 0);
-	ulaA_verifica : OUT std_logic_vector(7 DOWNTO 0);
-	DadoInRAM : OUT std_logic_vector(7 DOWNTO 0);
-	HabilitaRam : OUT std_logic;
-	read_ram : OUT std_logic
+	HEX0 : BUFFER std_logic_vector(6 DOWNTO 0);
+	HEX1 : BUFFER std_logic_vector(6 DOWNTO 0);
+	HEX2 : BUFFER std_logic_vector(6 DOWNTO 0);
+	HEX3 : BUFFER std_logic_vector(6 DOWNTO 0);
+	HEX4 : BUFFER std_logic_vector(6 DOWNTO 0);
+	HEX5 : BUFFER std_logic_vector(6 DOWNTO 0);
+	ulaB_verifica : BUFFER std_logic_vector(7 DOWNTO 0);
+	ulaA_verifica : BUFFER std_logic_vector(7 DOWNTO 0);
+	DadoInRAM : BUFFER std_logic_vector(7 DOWNTO 0);
+	HabilitaRam : BUFFER std_logic;
+	read_ram : BUFFER std_logic
 	);
 END aula7;
 
