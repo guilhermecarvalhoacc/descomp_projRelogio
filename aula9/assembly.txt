@@ -1,7 +1,63 @@
-LDI $0   #Carrega o acumulador com o valor 0
-STA @288 #Armazena o valor do acumulador em HEX0
-STA @289 #Armazena o valor do acumulador em HEX1
-STA @290 #Armazena o valor do acumulador em HEX2
-STA @291 #Armazena o valor do acumulador em HEX3
-STA @292 #Armazena o valor do acumulador em HEX4
-STA @293 #Armazena o valor do acumulador em HEX5
+-- INICIO MAIN LOOP
+JSR @SR_INICIALIZACAO
+NOP
+JSR @SR_ATUALIZAR_DISPLAY
+
+-- ZERAR VALORES DA MEMORIA (INICIALIZACAO) - DANI
+
+%LABEL SR_INICIALIZACAO
+
+NOP                                  # ====  Inicializar Contantes ===
+LDI $0                               # Carrega 0 no acumulador
+STA @ADDR_CTE0                       # Seta a constate CTE0
+LDI $1                               # Carrega 1 no acumulador 
+STA @ADDR_CTE1                       # Seta a constante CTE1
+LDI $9                               # Carrega 9 no acumulador 
+STA @ADDR_CTE9                       # Seta a constante CTE9
+
+-- Inicializar endereços de memória
+LDA @ADDR_CTE0                        #-- Load cte 0
+
+STA @ADDR_COUNTER_UNIDADE        
+STA @ADDR_COUNTER_DEZENA         
+STA @ADDR_COUNTER_CENTENA        
+STA @ADDR_COUNTER_MILHAR         
+STA @ADDR_COUNTER_DEZ_MILHAR     
+STA @ADDR_COUNTER_CEN_MILHAR     
+
+STA @ADDR_LIMIT_COUNTER_UNIDADE  
+STA @ADDR_LIMIT_COUNTER_DEZENA   
+STA @ADDR_LIMIT_COUNTER_CENTENA  
+STA @ADDR_LIMIT_COUNTER_MILHAR   
+STA @ADDR_LIMIT_COUNTER_DEZ_MILHAR
+STA @ADDR_LIMIT_COUNTER_CEN_MILHAR
+
+STA @ADDR_FLAG_OVERFLOW
+STA @ADDR_FLAG_INIBICAO
+RET @ADDR_CTE0                      #-- Exit inicialization sub routine
+NOP                                 #-- === FIM INICIALIZAR CTE's  ===
+
+
+%LABEL SR_ATUALIZAR_DISPLAY #-- ATUALIZAR DISPLAY - DANI
+
+LDA  @ADDR_COUNTER_UNIDADE    #-- LOAD UNIDADE
+STA  @HEX0                    #-- ARMAZENA EM HEX0
+LDA  @ADDR_COUNTER_DEZENA     #-- LOAD DEZENA 
+STA  @HEX1                    #-- ARMAZENA EM HEX1
+LDA  @ADDR_COUNTER_CENTENA    #-- LOAD CENTENA
+STA  @HEX2                    #-- ARMAZENA EM HEX2
+LDA  @ADDR_COUNTER_MILHAR     #-- LOAD MILHAR
+STA  @HEX3                    #-- ARMAZENA EM HEX3
+LDA  @ADDR_COUNTER_DEZ_MILHAR #-- LOAD DEZ.MILHAR 
+STA  @HEX4                    #-- ARMAZENA EM HEX4
+LDA  @ADDR_COUNTER_CEN_MILHAR #-- LOAD CEN.MILHAR 
+STA  @HEX5                    #-- ARMAZENA EM HEX5
+
+-- ATUALIZA LEDS OVERFLOW, INIBICAO
+LDA @ADDR_FLAG_OVERFLOW       #-- LOAD FLAG OVERFLOW
+STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
+LDA @ADDR_FLAG_INIBICAO       #-- LOAD FLAG INIBICAO
+STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
+RET @0                        #-- EXIT SUB ROUTINE;
+
+
