@@ -1,0 +1,33 @@
+Quartus Prime Archive log --	/home/daniel/Desktop/descompPROJ1/aula7/projeto1_contador.qarlog
+
+Archive:	/home/daniel/Desktop/descompPROJ1/aula7/projeto1_contador.qar
+Date:		Mon Apr 25 23:52:05 2022
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+/home/daniel/Desktop/descompPROJ1/aula7/ULASomaSub.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/Waveform.vwf
+/home/daniel/Desktop/descompPROJ1/aula7/Waveform3.vwf
+/home/daniel/Desktop/descompPROJ1/aula7/aula7.qpf
+/home/daniel/Desktop/descompPROJ1/aula7/aula7.qsf
+/home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_1porta.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_8portas.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/conversorHex7Seg.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/decoder.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/decoder3x8.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/edgeDetector.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/flipflop.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/memoriaRAM.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/memoriaROM.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/muxGenerico4x1.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/registradorGenerico.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/registradorRetorno.vhd
+/home/daniel/Desktop/descompPROJ1/aula7/somaConstante.vhd
+/home/daniel/intelFPGA_lite/20.1/quartus/linux64/assignment_defaults.qdf
+	======= Total: 22 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

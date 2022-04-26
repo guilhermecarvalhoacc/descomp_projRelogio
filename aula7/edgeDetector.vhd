@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity edgeDetector is
-     Port ( clk     : in  STD_LOGIC;
+     Port (   clk     : in  STD_LOGIC;
               entrada : in  STD_LOGIC;
               saida   : out STD_LOGIC);
 end entity;

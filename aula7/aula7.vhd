@@ -12,21 +12,23 @@ entity aula7 is
   port   (
   CLOCK_50        : in  std_logic;
   FPGA_RESET_N    : in  std_logic;
-  HabilitaRam     : out std_logic;
-  read_ram        : out std_logic;
+  --HabilitaRam     : out std_logic;
+  --read_ram        : out std_logic;
   LEDR            : out std_logic_vector(9 downto 0);
-  PC_OUT          : out std_logic_vector(8 downto 0);
-  ulaB_verifica   : out std_logic_vector(7 downto 0);
-  ulaA_verifica   : out std_logic_vector(7 downto 0);
+  --PC_OUT          : out std_logic_vector(8 downto 0);
+  --ulaB_verifica   : out std_logic_vector(7 downto 0);
+  --ulaA_verifica   : out std_logic_vector(7 downto 0);
   KEY             : in  std_logic_vector(3 downto 0);
   SW              : in  std_logic_vector(9 downto 0);
   HEX0,HEX1,HEX2  : out std_logic_vector(6 downto 0);
-  HEX3,HEX4,HEX5  : out std_logic_vector(6 downto 0);
+  HEX3,HEX4,HEX5  : out std_logic_vector(6 downto 0)
   
   -- Debugar
-  dbgInstructionROM: out std_logic_vector(AddrWidth-1 downto 0);
-  dbgEntradaRAM    : out std_logic_vector(DataWidth-1 downto 0);
-  dbgSaidaRAM      : out std_logic_vector(DataWidth-1 downto 0)
+  --dbgInstructionROM: out std_logic_vector(AddrWidth-1 downto 0);
+  --dbgEntradaRAM    : out std_logic_vector(DataWidth-1 downto 0);
+  --dbgSaidaRAM      : out std_logic_vector(DataWidth-1 downto 0);
+  --habilita_KEY0_teste : out std_logic_vector(DataWidth-1 downto 0);
+  --limpa_leituraKEY0_teste  : out std_logic_vector(DataWidth-1 downto 0)
 
   );
 
@@ -77,6 +79,10 @@ architecture arch_name of aula7 is
   signal clock_flipflop0,    clock_flipflop1   : std_logic;
   signal saida_debounceKEY0, saida_debounceKEY1: std_logic;
   signal limpa_leituraKEY0,  limpa_leituraKEY1 : std_logic;
+  
+  --teste
+  
+  
 
 
   
@@ -115,9 +121,9 @@ processador : entity work.processador_aula
 		Instrution_in => dadoROM,
 		ROM_address   => enderecoROM,
 		RD            => leituraRAM,
-		WR            => EscritaRAM,
-		ulaB_verifica => ulaB_verifica,
-		ulaA_verifica => ulaA_verifica
+		WR            => EscritaRAM
+		--ulaB_verifica => ulaB_verifica,
+		--ulaA_verifica => ulaA_verifica
 		);
 		
 decoder_blocos : entity work.decoder3x8 
@@ -206,10 +212,10 @@ buffer_FPGA_RESET : entity work.buffer_3_state_1porta
           port map (entrada => FPGA_RESET_N, habilita => habilita_FPGA_RESET, saida => dadolidoRAM);		
 
 -- debounce
-edgeDetector0 : entity work.edgeDetector 
+edgeDetector0 : entity work.edgeDetector(bordaSubida) 
           port map (clk => CLOCK_50, entrada => NOT KEY(0), saida => clock_flipflop0);
 
-edgeDetector1 : entity work.edgeDetector 
+edgeDetector1 : entity work.edgeDetector(bordaSubida) 
           port map (clk => CLOCK_50, entrada => NOT KEY(1), saida => clock_flipflop1);
 
 
@@ -249,18 +255,20 @@ habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2
 habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
 habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
 
-limpa_leituraKEY0 <= '1' when (     enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and leituraRAM);
-limpa_leituraKEY1 <= '1' when ((not enderecoRAM(0)) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and leituraRAM);
+limpa_leituraKEY0 <= enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY1 <= (not enderecoRAM(0)) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 
+--habilita_KEY0_teste
+--limpa_leituraKEY0_teste
 
-PC_OUT        <= enderecoROM;
-ulaB_verifica <= ulaB_verifica;
-ulaA_verifica <= ulaA_verifica;
+--PC_OUT        <= enderecoROM;
+--ulaB_verifica <= ulaB_verifica;
+--ulaA_verifica <= ulaA_verifica;
 
-dbgSaidaRAM   <= dadolidoRAM;
-dbgEntradaRAM <= dadoEscritoRAM;
-HabilitaRam   <= saidas_decoder(0);
-read_ram      <= leituraRAM;
-dbgInstructionROM <= dadoROM;
+--dbgSaidaRAM   <= dadolidoRAM;
+--dbgEntradaRAM <= dadoEscritoRAM;
+--HabilitaRam   <= saidas_decoder(0);
+--read_ram      <= leituraRAM;
+--dbgInstructionROM <= dadoROM;
 
 end architecture;
