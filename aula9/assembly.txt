@@ -2,11 +2,14 @@
 JSR @SR_INICIALIZACAO
 NOP
 JSR @SR_ATUALIZAR_DISPLAY
+NOP
+JSR @SR_SET_LIMIT
+NOP
+--JSR @SR_ATUALIZAR_DISPLAY
+--NOP
 
--- ZERAR VALORES DA MEMORIA (INICIALIZACAO) - DANI
 
-%LABEL SR_INICIALIZACAO
-
+%LABEL SR_INICIALIZACAO -- ZERAR VALORES DA MEMORIA (INICIALIZACAO) - DANI
 NOP                                  # ====  Inicializar Contantes ===
 LDI $0                               # Carrega 0 no acumulador
 STA @ADDR_CTE0                       # Seta a constate CTE0
@@ -17,21 +20,18 @@ STA @ADDR_CTE9                       # Seta a constante CTE9
 
 -- Inicializar endereços de memória
 LDA @ADDR_CTE0                        #-- Load cte 0
-
 STA @ADDR_COUNTER_UNIDADE        
 STA @ADDR_COUNTER_DEZENA         
 STA @ADDR_COUNTER_CENTENA        
 STA @ADDR_COUNTER_MILHAR         
 STA @ADDR_COUNTER_DEZ_MILHAR     
 STA @ADDR_COUNTER_CEN_MILHAR     
-
 STA @ADDR_LIMIT_COUNTER_UNIDADE  
 STA @ADDR_LIMIT_COUNTER_DEZENA   
 STA @ADDR_LIMIT_COUNTER_CENTENA  
 STA @ADDR_LIMIT_COUNTER_MILHAR   
 STA @ADDR_LIMIT_COUNTER_DEZ_MILHAR
 STA @ADDR_LIMIT_COUNTER_CEN_MILHAR
-
 STA @ADDR_FLAG_OVERFLOW
 STA @ADDR_FLAG_INIBICAO
 RET @ADDR_CTE0                      #-- Exit inicialization sub routine
@@ -39,7 +39,6 @@ NOP                                 #-- === FIM INICIALIZAR CTE's  ===
 
 
 %LABEL SR_ATUALIZAR_DISPLAY #-- ATUALIZAR DISPLAY - DANI
-
 LDA  @ADDR_COUNTER_UNIDADE    #-- LOAD UNIDADE
 STA  @HEX0                    #-- ARMAZENA EM HEX0
 LDA  @ADDR_COUNTER_DEZENA     #-- LOAD DEZENA 
@@ -52,12 +51,102 @@ LDA  @ADDR_COUNTER_DEZ_MILHAR #-- LOAD DEZ.MILHAR
 STA  @HEX4                    #-- ARMAZENA EM HEX4
 LDA  @ADDR_COUNTER_CEN_MILHAR #-- LOAD CEN.MILHAR 
 STA  @HEX5                    #-- ARMAZENA EM HEX5
-
 -- ATUALIZA LEDS OVERFLOW, INIBICAO
 LDA @ADDR_FLAG_OVERFLOW       #-- LOAD FLAG OVERFLOW
 STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
 LDA @ADDR_FLAG_INIBICAO       #-- LOAD FLAG INIBICAO
 STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
 RET @0                        #-- EXIT SUB ROUTINE;
+  
+
+%LABEL SR_SET_LIMIT             #-- CONFIGURAR LIMITE CONTADOR
+LDA @ADDR_CTE1                  # LOAD CTE0
+STA @CLEAR_KEY1                 # RESET KEY1
+LDA @ADDR_CTE1                  # LOAD CTE1 (explicito)
+STA @LEDR                       # Acender o primeiro LED
+LDA @SWR                        # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_UNIDADE # SET UNIDADE LIMIT
+STA @HEX0                       # Mostra o valor escolhido em HEX0
+LDA @KEY1                       # LOAD KEY1
+CEQ @ADDR_CTE1                  # KEY1 == 0 (PRECISA COMPARA COM 0 PARA TRAVAR, COM 1 PASSA DIRETO)
+JEQ @SR_SET_LIMIT_DEZ           # If Key1 apertado: jmp configurar limite dezena
+NOP
+JMP @SR_SET_LIMIT               # if key1 not apertado: refaz o processo para UNIDADE
+
+%LABEL SR_SET_LIMIT_DEZ
+LDA @ADDR_CTE0                  # LOAD CTE0
+STA @CLEAR_KEY1                 # RESET KEY1
+LDI $2                          # LOAD 2 (explicito)
+STA @LEDR                       # Acender o segundo LED
+LDA @SWR                        # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_DEZENA  # SET UNIDADE LIMIT
+STA @HEX1                       # Mostra o valor escolhido em HEX1
+LDA @KEY1                       # LOAD KEY1
+CEQ @ADDR_CTE0                  # KEY1 == 1?
+JEQ @SR_SET_LIMIT_CENT          # If Key1 apertado: jmp configurar limite CENT
+NOP
+JMP @SR_SET_LIMIT_DEZ           # if key1 not apertado: refaz o processo para DEZENA
+
+%LABEL SR_SET_LIMIT_CENT
+LDA @ADDR_CTE1                  # LOAD CTE1 
+STA @CLEAR_KEY1                 # RESET KEY1
+LDI $4                          # LOAD 4 (explicito)
+STA @LEDR                       # Acender o terceiro LED
+LDA @SWR                        # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_CENTENA # SET CENTENA LIMIT
+STA @HEX2                       # Mostra o valor escolhido em HEX2
+LDA @KEY1                       # LOAD KEY1
+CEQ @ADDR_CTE0                  # KEY1 == 1?
+JEQ @SR_SET_LIMIT_MILHAR        # If Key1 apertado: jmp configurar limite MILHAR
+NOP
+JMP @SR_SET_LIMIT_CENT          # if key1 not apertado: refaz o processo para CENTENA
+
+%LABEL SR_SET_LIMIT_MILHAR
+LDA @ADDR_CTE1                  # LOAD CTE1 
+STA @CLEAR_KEY1                 # RESET KEY1
+LDI $8                          # Load 8 (explicito)
+STA @LEDR                       # Acender o 4 LED
+LDA @SWR                        # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_MILHAR  # SET UNIDADE LIMIT
+STA @HEX3                       # Mostra o valor escolhido em HEX3
+LDA @KEY1                       # LOAD KEY1
+CEQ @ADDR_CTE0                  # KEY1 == 1?
+JEQ @SR_SET_LIMIT_DEZ_MILHAR    # If Key1 apertado: jmp configurar limite DEZ_MILHAR
+NOP
+JMP @SR_SET_LIMIT_MILHAR        # if key1 not apertado: refaz o processo para MILHAR
+
+%LABEL SR_SET_LIMIT_DEZ_MILHAR
+LDA @ADDR_CTE0                     # LOAD CTE1 
+STA @CLEAR_KEY1                    # RESET KEY1
+LDI $16                            # Load 16 (explicito)
+STA @LEDR
+LDA @SWR                           # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_DEZ_MILHAR # SET DEZ_MILHAR LIMIT
+STA @HEX4                          # Mostra o valor escolhido em HEX4
+LDA @KEY1                          # LOAD KEY1
+CEQ @ADDR_CTE0                     # KEY1 == 1?
+JEQ @SR_SET_LIMIT_CENT_MILHAR      # If Key1 apertado: jmp configurar limite CENT_MILHAR
+NOP
+JMP @SR_SET_LIMIT_DEZ_MILHAR       # if key1 not apertado: refaz o processo para MILHAR
+
+%LABEL SR_SET_LIMIT_CENT_MILHAR
+LDA @ADDR_CTE0                     # LOAD CTE1 
+STA @CLEAR_KEY1                    # RESET KEY1
+LDI $32                            # Load 32 (explicito)
+STA @LEDR                          # Acender o 6 LED
+LDA @SWR                           # Carrega valores dos SW
+STA @ADDR_LIMIT_COUNTER_CEN_MILHAR # SET CENT_MILHAR LIMIT
+STA @HEX5                          # Mostra o valor escolhido em HEX5
+LDA @KEY1                          # LOAD KEY1
+CEQ @ADDR_CTE0                     # KEY1 == 1?
+JEQ @END_SR_SET_LIMIT              # If Key1 apertado: jmp configurar limite CENT_MILHAR
+NOP
+JMP @SR_SET_LIMIT_DEZ_MILHAR       # if key1 not apertado: refaz o processo para MILHAR
+NOP
+
+%LABEL END_SR_SET_LIMIT
+RET @ADDR_CTE0      
 
 
+--LDA @ADDR_CTE1
+--STA @HEX4
