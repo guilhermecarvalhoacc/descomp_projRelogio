@@ -1,0 +1,39 @@
+LDI $1
+STA @ADDR_CTE1
+
+%LABEL TESTE_BUTONS
+
+LDA @KEY0
+STA @HEX0
+
+LDA @KEY1
+CEQ @ADDR_CTE1
+JEQ @LIMPA
+NOP
+JMP @TESTE_BUTONS
+NOP
+
+%LABEL LIMPA
+STA @CLEAR_KEY0
+STA @CLEAR_KEY1
+JMP @TESTE_BUTONS
+NOP
+
+--LDA @KEY0
+--STA @HEX0
+--STA @CLEAR_KEY0                 # RESET KEY1
+--
+--
+--LDA @KEY1
+--STA @HEX1
+--STA @CLEAR_KEY1                 # RESET KEY1
+--
+--LDA @KEY2
+--STA @HEX2
+--
+--LDA @KEY3                  # LOAD CTE1 (explicito)
+--STA @HEX3                  # LOAD CTE1 (explicito)
+--
+--LDA @FPGA_RESET                 # LOAD CTE1 (explicito)
+--STA @HEX4                       # Acender o primeiro L
+--JMP @TESTE_BUTONS

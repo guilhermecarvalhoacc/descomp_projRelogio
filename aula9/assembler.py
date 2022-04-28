@@ -49,6 +49,9 @@ DIC_CONSTANTES_MEM_ADDR = {
     'HEX5'                          : '293',
 
     "LEDR"                          : "256",
+    "LEDR8"                         : "257",
+    "LEDR9"                         : "258",
+
     "SWR"                           : "320",
     "SW8"                           : "321",
     "SW9"                           : "322",
