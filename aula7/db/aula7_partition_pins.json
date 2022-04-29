@@ -44,42 +44,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "PC_OUT[0]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[1]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[2]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[3]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[4]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[5]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[6]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[7]",
-					"strict" : false
-				},
-				{
-					"name" : "PC_OUT[8]",
-					"strict" : false
-				},
-				{
 					"name" : "HEX0[0]",
 					"strict" : false
 				},
@@ -248,123 +212,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "ulaB_verifica[0]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[1]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[2]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[3]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[4]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[5]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[6]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaB_verifica[7]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[0]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[1]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[2]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[3]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[4]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[5]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[6]",
-					"strict" : false
-				},
-				{
-					"name" : "ulaA_verifica[7]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[0]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[1]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[2]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[3]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[4]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[5]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[6]",
-					"strict" : false
-				},
-				{
-					"name" : "DadoInRAM[7]",
-					"strict" : false
-				},
-				{
-					"name" : "HabilitaRam",
-					"strict" : false
-				},
-				{
-					"name" : "read_ram",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[3]",
-					"strict" : false
-				},
-				{
-					"name" : "FPGA_RESET_N",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[1]",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[2]",
+					"name" : "CLOCK_50",
 					"strict" : false
 				},
 				{
@@ -372,7 +220,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "KEY[3]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[2]",
 					"strict" : false
 				},
 				{
@@ -380,7 +236,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "FPGA_RESET_N",
 					"strict" : false
 				},
 				{
@@ -412,7 +268,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
 					"strict" : false
 				}
 			]

@@ -1,0 +1,317 @@
+Endereço em Decimal	Periférico	Largura dos Dados	Tipo de Acesso	Bloco (Página) de Memória
+0   ~ 63	RAM	8 bits	Leitura/Escrita	0
+64  ~ 127	Reservado	–	–	1
+128 ~ 191	Reservado	–	–	2
+192 ~ 255	Reservado	–	–	3
+256	LEDR0 ~ LEDR7	8 bits	Escrita	4
+257	LEDR8	1 bit	Escrita	4
+258	LEDR9	1 bit	Escrita	4
+259 ~ 287	Reservado	–	–	4
+288	HEX0	4 bits	Escrita	4
+289	HEX1	4 bits	Escrita	4
+290	HEX2	4 bits	Escrita	4
+291	HEX3	4 bits	Escrita	4
+292	HEX4	4 bits	Escrita	4
+293	HEX5	4 bits	Escrita	4
+294 ~ 319	Reservado	–	–	4
+320	SW0 ~ SW7	8 bits	Leitura	5
+321	SW8	1 bit	Leitura	5
+322	SW9	1 bit	Leitura	5
+323 ~ 351	Reservado	–	–	5
+352	KEY0	1 bit	Leitura	5
+353	KEY1	1 bit	Leitura	5
+354	KEY2	1 bit	Leitura	5
+355	KEY3	1 bit	Leitura	5
+356	FPGA_RESET	1 bit	Leitura	5
+357 ~ 383	Reservado	–	–	5
+384 ~ 447	Reservado	–	–	6
+448 ~ 510	Reservado	–	–	7
+510	Limpa Leitura KEY1	–	Escrita	7
+511	Limpa Leitura KEY0	–	Escrita	7
+
+
+-- CONSTANTES
+
+DIC_CONSTANTES: {
+    'ADDR_CTE0'                     :   '0',    #RAM[0]   - @0
+    'ADDR_CTE1'                     :   '1',    #RAM[1]   - @1 
+    'ADDR_CTE9'                     :   '9',    #RAM[9]   - @9 
+
+    'ADDR_COUNTER_UNIDADE'          :  '10',    #RAM[10]  - @10
+    'ADDR_COUNTER_DEZENA'           :  '11',    #RAM[11]  - @11
+    'ADDR_COUNTER_CENTENA'          :  '12',    #RAM[12]  - @12
+    'ADDR_COUNTER_MILHAR'           :  '13',    #RAM[13]  - @13
+    'ADDR_COUNTER_DEZ_MILHAR'       :  '14',    #RAM[14]  - @14
+    'ADDR_COUNTER_CEN_MILHAR'       :  '15',    #RAM[15]  - @15
+
+    'ADDR_LIMIT_COUNTER_UNIDADE'    :  '16',    #RAM[16]  - @16
+    'ADDR_LIMIT_COUNTER_DEZENA'     :  '17',    #RAM[17]  - @17
+    'ADDR_LIMIT_COUNTER_CENTENA'    :  '18',    #RAM[18]  - @18
+    'ADDR_LIMIT_COUNTER_MILHAR'     :  '19',    #RAM[19]  - @19
+    'ADDR_LIMIT_COUNTER_DEZ_MILHAR' :  '20',    #RAM[20]  - @20
+    'ADDR_LIMIT_COUNTER_CEN_MILHAR' :  '21',    #RAM[21]  - @21
+
+    'ADDR_FLAG_OVERFLOW'            :  '22',    #RAM[22]  - @22
+    'ADDR_FLAG_INIBICAO'            :  '23',    #RAM[23]  - @23
+    'LED_F_OVERFLOW'                : '257',    #RAM[257] - @257
+    'LED_F_INIBICAO'                : '258',    #RAM[258] - @258
+
+    #Display
+    'HEX0'                          : '288',
+    'HEX1'                          : '289',
+    'HEX2'                          : '290',
+    'HEX3'                          : '291',
+    'HEX4'                          : '292',
+    'HEX5'                          : '293',
+}
+
+-- MAIN LOOP RAFA + DANI
+
+Assembly aqui
+
+-- ZERAR VALORES DA MEMORIA (INICIALIZACAO) - RAFA
+
+%LABEL SR_INICIALIZACAO
+
+-- Inicializar Contantes
+LDI $0                               # Carrega 0 no acumulador
+STA @ADDR_CTE0                       # Seta a constate CTE0
+LDI $1                               # Carrega 1 no acumulador 
+STA @ADDR_CTE1                       # Seta a constante CTE1
+LDI $9                               # Carrega 9 no acumulador 
+STA @ADDR_CTE9                       # Seta a constante CTE9
+
+-- Inicializar endereços de memória
+LDA @ADDR_CTE0                        #-- Load cte 0
+
+STA @ADDR_COUNTER_UNIDADE        
+STA @ADDR_COUNTER_DEZENA         
+STA @ADDR_COUNTER_CENTENA        
+STA @ADDR_COUNTER_MILHAR         
+STA @ADDR_COUNTER_DEZ_MILHAR     
+STA @ADDR_COUNTER_CEN_MILHAR     
+
+STA @ADDR_LIMIT_COUNTER_UNIDADE  
+STA @ADDR_LIMIT_COUNTER_DEZENA   
+STA @ADDR_LIMIT_COUNTER_CENTENA  
+STA @ADDR_LIMIT_COUNTER_MILHAR   
+STA @ADDR_LIMIT_COUNTER_DEZ_MILHAR
+STA @ADDR_LIMIT_COUNTER_CEN_MILHAR
+
+STA @ADDR_FLAG_OVERFLOW
+STA @ADDR_FLAG_INIBICAO
+JSR @SR_ATUALIZAR_DISPLAY
+NOP
+RET @ADDR_CTE0                      #-- Exit inicialization sub routine
+
+
+%LABEL SR_INCREMENTO_CONTADOR
+
+-- 1) UNIDADE
+
+LDA  @ADDR_COUNTER_UNIDADE #-- LOAD UNIDADE
+CEQ  @ADDR_CTE9            #-- COMPARA COM 9
+JEQ  @SR_INCREMENTO_DEZENA #PULA PARA INCREMENTO DE DEZENA
+NOP
+-- IF (UNIDADE != 9): {UNIDADE++} 
+SOMA @ADDR_CTE1            #-- SOMA 1        
+STA  @ADDR_COUNTER_UNIDADE #-- SET UNIDADE += 1;
+RET  @ADDR_CTE0            #-- EXIT SUB ROUTINE;
+
+
+%LABEL SR_INCREMENTO_DEZENA
+-- ELSE (UNIDADE == 9): {UNIDADE=0; DEZENA++}
+LDA  @ADDR_CTE0            #-- LOAD CTE 0
+STA  @ADDR_COUNTER_UNIDADE #-- SET UNIDADE = 0 | RAM[10] - UNIDADE;
+
+-- 2) DEZENA
+
+LDA  @ADDR_COUNTER_DEZENA  #-- LOAD DEZENA 
+CEQ  @ADDR_CTE9            #-- COMPARA COM 9
+JEQ  @SR_INCREMENTO_DEZENA #PULA PARA INCREMENTO DE CENTENA
+NOP
+-- IF DEZENA != 9: {DEZENA++} 
+SOMA @ADDR_CTE1            #-- SOMA 1       
+STA  @ADDR_COUNTER_DEZENA  #-- SET DEZENA += 1;
+RET  @ADDR_CTE0            #-- EXIT SUB ROUTINE;
+
+%LABEL SR_INCREMENTO_CENTENA
+-- ELSE (DEZENA == 9): {DEZENA=0; CENTENA++}
+LDA  @ADDR_CTE0            #-- LOAD CTE 0
+STA  @ADDR_COUNTER_DEZENA  #-- SET DEZENA = 0 
+
+-- 3) CENTENA
+
+LDA  @ADDR_COUNTER_CENTENA  #-- LOAD CENTENA 
+CEQ  @ADDR_CTE9             #-- COMPARA COM 9 
+JEQ  @SR_INCREMENTO_MILHAR  #PULA PARA INCREMENTO DE MILHAR
+NOP
+-- IF CENTENA != 9: {CENTENA++} 
+SOMA @ADDR_CTE1             #-- SOMA 1        
+STA  @ADDR_COUNTER_CENTENA  #-- SET CENTENA += 1;
+RET  @ADDR_CTE0             #-- EXIT SUB ROUTINE;
+
+%LABEL SR_INCREMENTO_MILHAR -- ELSE (CENTENA == 9): {CENTENA=0; MILHAR++}
+LDA  @ADDR_CTE0             #-- LOAD CTE 0
+STA  @ADDR_COUNTER_CENTENA  #-- SET CENTENA = 0
+
+-- 4) MILHARES
+
+LDA  @ADDR_COUNTER_MILHAR      #-- LOAD MILHAR   
+CEQ  @ADDR_CTE9                #-- COMPARA COM 9
+JEQ  @SR_INCREMENTO_DEZ_MILHAR #-- PULA PARA INCREMENTO DE DEZ MILHAR
+NOP
+-- IF MILHAR != 9: {MILHAR++} 
+SOMA @ADDR_CTE1                #-- SOMA 1        
+STA  @ADDR_COUNTER_MILHAR      #-- SET MILHAR += 1;
+RET  @ADDR_CTE0                #-- EXIT SUB ROUTINE;
+
+%LABEL SR_INCREMENTO_DEZ_MILHAR -- ELSE (MILHAR == 9): {MILHAR=0; DEZ_MILHAR++}
+LDA  @ADDR_CTE0                #-- LOAD CTE 0
+STA  @ADDR_COUNTER_MILHAR      #-- SET MILHAR = 0 
+
+-- 5) DEZ. MILHARES
+
+LDA  @ADDR_COUNTER_DEZ_MILHAR     #-- LOAD DEZ.MILHAR   
+CEQ  @ADDR_CTE9                   #-- COMPARA COM 9 
+JEQ  @SR_INCREMENtO_CEN_MILHAR    #-- PULA PARA INCREMENTO DE CEN.MILHAR
+NOP
+-- IF DEZ.MILHAR != 9: {DEZ.MILHAR++} 
+SOMA @ADDR_CTE1                   #-- SOMA 1  
+STA  @ADDR_COUNTER_DEZ_MILHAR     #-- SET DEZ.MILHAR += 1;
+RET  @ADDR_CTE0                   #-- EXIT SUB ROUTINE;
+
+%LABEL SR_INCREMENTO_CEN_MILHAR   #-- ELSE (DEZ.MILHAR == 9): {DEZ.MILHAR=0; CEN.MILHAR++}
+LDA  @ADDR_CTE0  #-- LOAD CTE 0
+STA  @ADDR_COUNTER_DEZ_MILHAR     #-- SET DEZ.MILHAR = 0 
+
+-- 6) CEN. MILHARES
+
+LDA  @ADDR_COUNTER_CEN_MILHAR     #-- LOAD CEN.MILHAR 
+CEQ  @ADDR_CTE9                   #-- COMPARA COM 9 
+JEQ  @SR_SET_OVERFLOW #PULA PARA FLAG OVErFLOW E LIMITE ATINGIDO
+NOP
+-- IF CEN.MILHAR != 9: {CEN.MILHAR++} 
+SOMA @ADDR_CTE1                   #-- SOMA 1
+STA  @ADDR_COUNTER_CEN_MILHAR     #-- SET CEN.MILHAR += 1;
+RET  @ADDR_CTE0                   #-- EXIT SUB ROUTINE;
+
+-- ELSE (CEN.MILHAR == 9): {CEN.MILHAR=10; OVERFLOW=1 INIBI=1}
+
+%LABEL SR_SET_OVERFLOW         #-- OVERFLOW E INIBICAO
+LDA  @ADDR_COUNTER_CEN_MILHAR  #-- LOAD CEN.MILHAR 
+SOMA @ADDR_CTE1                #-- SOMA 1
+STA  @ADDR_COUNTER_CEN_MILHAR  #-- SET CEN.MILHAR += 1;
+LDA  @ADDR_CTE1                #-- LOAD CTE 1
+STA  @ADDR_FLAG_INIBICAO       #-- FLAG_INIBICAO = 1
+STA  @ADDR_FLAG_OVERFLOW       #-- FLAG_OVERFLOW = 1
+RET  @ADDR_CTE0                #-- EXIT SUB ROUTINE - INCREMENTA;
+
+
+%LABEL SR_ATUALIZAR_DISPLAY #-- ATUALIZAR DISPLAY - DANI
+
+LDA  @ADDR_COUNTER_UNIDADE    #-- LOAD UNIDADE
+STA  @HEX0                    #-- ARMAZENA EM HEX0
+LDA  @ADDR_COUNTER_DEZENA     #-- LOAD DEZENA 
+STA  @HEX1                    #-- ARMAZENA EM HEX1
+LDA  @ADDR_COUNTER_CENTENA    #-- LOAD CENTENA
+STA  @HEX2                    #-- ARMAZENA EM HEX2
+LDA  @ADDR_COUNTER_MILHAR     #-- LOAD MILHAR
+STA  @HEX3                    #-- ARMAZENA EM HEX3
+LDA  @ADDR_COUNTER_DEZ_MILHAR #-- LOAD DEZ.MILHAR 
+STA  @HEX4                    #-- ARMAZENA EM HEX4
+LDA  @ADDR_COUNTER_CEN_MILHAR #-- LOAD CEN.MILHAR 
+STA  @HEX5                    #-- ARMAZENA EM HEX5
+
+-- ATUALIZA LEDS OVERFLOW, INIBICAO
+LDA @ADDR_FLAG_OVERFLOW       #-- LOAD FLAG OVERFLOW
+STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
+LDA @ADDR_FLAG_INIBICAO       #-- LOAD FLAG INIBICAO
+STA @LED_F_OVERFLOW           #-- ARMAZENA NO LED
+RET @0                        #-- EXIT SUB ROUTINE;
+
+
+%LABEL SR_RESTART_COUNTER     #-- REINICIAR CONTAGEM - DANI
+LDA @ADDR_CTE0                #-- Load cte 0
+
+STA @ADDR_COUNTER_UNIDADE        
+STA @ADDR_COUNTER_DEZENA         
+STA @ADDR_COUNTER_CENTENA        
+STA @ADDR_COUNTER_MILHAR         
+STA @ADDR_COUNTER_DEZ_MILHAR     
+STA @ADDR_COUNTER_CEN_MILHAR     
+
+STA @ADDR_FLAG_OVERFLOW
+STA @ADDR_FLAG_INIBICAO
+
+JMP @SR_ATUALIZAR_DISPLAY
+NOP                           #-- Exit sub routine after finishing updating display
+
+
+-- ALTERAR LIMITE CONTADOR - DANI
+
+
+-- SUB-ROTINA LIMITE: VERIFICAR SE ATINGIU O LIMITE - DANI
+
+-- 1) CEN.MILHAR
+LDA @ADDR_LIMIT_COUNTER_CEN_MILHAR   #-- LOAD LIMITE CEN.MILHAR
+CEQ @ADDR_COUNTER_CEN_MILHAR         #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- Jump to next verification
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+
+-- 2) DEZ.MILHAR
+LDA @ADDR_LIMIT_COUNTER_DEZ_MILHAR   #-- LOAD LIMITE DEZ.MILHAR
+CEQ @ADDR_COUNTER_DEZ_MILHAR         #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- Jump to next verification
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+-- 3) MILHAR
+LDA @ADDR_LIMIT_COUNTER_MILHAR       #-- LOAD LIMITE MILHAR
+CEQ @ADDR_COUNTER_MILHAR             #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- Jump to next verification
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+
+-- 4) CENTENA
+LDA @ADDR_LIMIT_COUNTER_CENTENA      #-- LOAD LIMITE CENTENA
+CEQ @ADDR_COUNTER_CENTENA            #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- Jump to next verification
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+-- 5) DEZENA
+LDA @ADDR_LIMIT_COUNTER_CEN_MILHAR   #-- LOAD LIMITE DEZENA
+CEQ @ADDR_COUNTER_DEZENA             #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- Jump to next verification
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+-- 1) UNIDADE
+LDA @ADDR_LIMIT_COUNTER_UNIDADE   #-- LOAD LIMITE UNIDADE
+CEQ @ADDR_COUNTER_UNIDADE         #-- VERIFY (COUNTER == LIMIT)
+--  IF (COUNTER == LIMIT): {CONTINUE}
+JEQ @TODO                            #-- JUMP SR 'LIMITE ATINGIDO'
+--  ELSE (COUNTER != LIMIT): {FLAG INIBICAO=FALSE}
+JMP @TODO                            #-- JUMP SR 'LIMITE NAO ATINGIDO'
+
+
+-- SUB-ROTINA LIMITE A): MARCA LIMITE ATINGIDO - DANI
+LDA @ADDR_CTE1                       #-- LOAD CTE 1
+STA @ADDR_FLAG_INIBICAO              #-- FLAG_INIBICAO = 1
+RET                                  #-- EXIT COUNTER LIMIT VERIFICATION SUB-ROUTINE
+
+-- SUB-ROTINA LIMITE B): MARCA LIMITE NÃO ATINGIDO - DANI
+LDA @ADDR_CTE0                       #-- LOAD CTE 0
+STA @ADDR_FLAG_INIBICAO              #-- FLAG_INIBICAO = 0
+RET                                  #-- EXIT COUNTER LIMIT VERIFICATION SUB-ROUTINE
+
+

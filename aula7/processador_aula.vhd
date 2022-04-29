@@ -16,9 +16,9 @@ entity processadoR_aula is
 	 dataAddress: out std_logic_vector(larguraEnderecos - 1 downto 0);
 	 Instrution_in: in std_logic_vector(dadoROM-1 downto 0);
 	 ROM_address: out std_logic_vector(tamanhoROM - 1 downto 0);
-	 RD, WR : out std_logic;
-	 ulaB_verifica: out std_logic_vector(7 downto 0);
-	 ulaA_verifica: out std_logic_vector(7 downto 0)
+	 RD, WR : out std_logic
+	 --ulaB_verifica: out std_logic_vector(7 downto 0);
+	 --ulaA_verifica: out std_logic_vector(7 downto 0)
   );
 end entity;
 
@@ -115,8 +115,9 @@ RD <= hab_leitura;
 saida_dados_ROM <= Instrution_in;
 dataAddress <= Instrution_in(8 downto 0) ;
 ROM_address <= Endereco;
-ulaB_verifica <= saida_MUX;
-ulaA_verifica <= REG1_ULA_A;
+
+--ulaB_verifica <= saida_MUX;
+--ulaA_verifica <= REG1_ULA_A;
 
 
 end architecture;

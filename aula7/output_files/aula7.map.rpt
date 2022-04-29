@@ -1,5 +1,5 @@
 Analysis & Synthesis report for aula7
-Tue Apr 19 18:35:29 2022
+Thu Apr 28 09:25:32 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,11 +13,11 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
  10. Parameter Settings for User Entity Instance: Top-level Entity: |aula7
- 11. Parameter Settings for User Entity Instance: memoriaRAM:MemoriaRAM
- 12. Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao
+ 11. Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao
+ 12. Parameter Settings for User Entity Instance: memoriaRAM:MemoriaRAM
  13. Parameter Settings for User Entity Instance: processadoR_aula:processador
  14. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico2x1:MUX1
  15. Parameter Settings for User Entity Instance: processadoR_aula:processador|muxGenerico4x1:MUXJMP
@@ -36,31 +36,35 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  28. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit3
  29. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit4
  30. Parameter Settings for User Entity Instance: registradorGenerico:REG_4bit5
- 31. Port Connectivity Checks: "registradorGenerico:REG_4bit5"
- 32. Port Connectivity Checks: "registradorGenerico:REG_4bit4"
- 33. Port Connectivity Checks: "registradorGenerico:REG_4bit3"
- 34. Port Connectivity Checks: "registradorGenerico:REG_4bit2"
- 35. Port Connectivity Checks: "registradorGenerico:REG_4bit1"
- 36. Port Connectivity Checks: "registradorGenerico:REG_4bit0"
- 37. Port Connectivity Checks: "conversorHex7Seg:decoder_binario5"
- 38. Port Connectivity Checks: "conversorHex7Seg:decoder_binario4"
- 39. Port Connectivity Checks: "conversorHex7Seg:decoder_binario3"
- 40. Port Connectivity Checks: "conversorHex7Seg:decoder_binario2"
- 41. Port Connectivity Checks: "conversorHex7Seg:decoder_binario1"
- 42. Port Connectivity Checks: "conversorHex7Seg:decoder_binario0"
- 43. Port Connectivity Checks: "registradorGenerico:registrador_8bits"
- 44. Port Connectivity Checks: "flipflop:flipflop2"
- 45. Port Connectivity Checks: "flipflop:flipflop1"
- 46. Port Connectivity Checks: "decoder3x8:decoder_end"
- 47. Port Connectivity Checks: "decoder3x8:decoder_blocos"
- 48. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:PC"
- 49. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:End_retorno"
- 50. Port Connectivity Checks: "processadoR_aula:processador|flipflop:flipflop"
- 51. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:REGA"
- 52. Port Connectivity Checks: "processadoR_aula:processador|muxGenerico4x1:MUXJMP"
- 53. Post-Synthesis Netlist Statistics for Top Partition
- 54. Elapsed Time Per Partition
- 55. Analysis & Synthesis Messages
+ 31. Parameter Settings for User Entity Instance: flipflop:flipflop_debounceKEY0
+ 32. Parameter Settings for User Entity Instance: flipflop:flipflop_debounce_KEY1
+ 33. Port Connectivity Checks: "flipflop:flipflop_debounce_KEY1"
+ 34. Port Connectivity Checks: "flipflop:flipflop_debounceKEY0"
+ 35. Port Connectivity Checks: "registradorGenerico:REG_4bit5"
+ 36. Port Connectivity Checks: "registradorGenerico:REG_4bit4"
+ 37. Port Connectivity Checks: "registradorGenerico:REG_4bit3"
+ 38. Port Connectivity Checks: "registradorGenerico:REG_4bit2"
+ 39. Port Connectivity Checks: "registradorGenerico:REG_4bit1"
+ 40. Port Connectivity Checks: "registradorGenerico:REG_4bit0"
+ 41. Port Connectivity Checks: "conversorHex7Seg:decoder_binario5"
+ 42. Port Connectivity Checks: "conversorHex7Seg:decoder_binario4"
+ 43. Port Connectivity Checks: "conversorHex7Seg:decoder_binario3"
+ 44. Port Connectivity Checks: "conversorHex7Seg:decoder_binario2"
+ 45. Port Connectivity Checks: "conversorHex7Seg:decoder_binario1"
+ 46. Port Connectivity Checks: "conversorHex7Seg:decoder_binario0"
+ 47. Port Connectivity Checks: "registradorGenerico:registrador_8bits"
+ 48. Port Connectivity Checks: "flipflop:flipflop2"
+ 49. Port Connectivity Checks: "flipflop:flipflop1"
+ 50. Port Connectivity Checks: "decoder3x8:decoder_end"
+ 51. Port Connectivity Checks: "decoder3x8:decoder_blocos"
+ 52. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:PC"
+ 53. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:End_retorno"
+ 54. Port Connectivity Checks: "processadoR_aula:processador|flipflop:flipflop"
+ 55. Port Connectivity Checks: "processadoR_aula:processador|registradorGenerico:REGA"
+ 56. Port Connectivity Checks: "processadoR_aula:processador|muxGenerico4x1:MUXJMP"
+ 57. Post-Synthesis Netlist Statistics for Top Partition
+ 58. Elapsed Time Per Partition
+ 59. Analysis & Synthesis Messages
 
 
 
@@ -87,14 +91,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Apr 19 18:35:29 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Apr 28 09:25:32 2022       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; aula7                                       ;
 ; Top-level Entity Name           ; aula7                                       ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 51                                          ;
-; Total pins                      ; 103                                         ;
+; Total registers                 ; 577                                         ;
+; Total pins                      ; 68                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -201,39 +205,42 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 16          ;
-; Maximum allowed            ; 16          ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 16          ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                     ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                              ; Library ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
-; processador_aula.vhd             ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/processador_aula.vhd       ;         ;
-; ULASomaSub.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/ULASomaSub.vhd             ;         ;
-; somaConstante.vhd                ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/somaConstante.vhd          ;         ;
-; registradorGenerico.vhd          ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/registradorGenerico.vhd    ;         ;
-; muxGenerico4x1.vhd               ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/muxGenerico4x1.vhd         ;         ;
-; muxGenerico2x1.vhd               ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/muxGenerico2x1.vhd         ;         ;
-; memoriaROM.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/memoriaROM.vhd             ;         ;
-; memoriaRAM.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/memoriaRAM.vhd             ;         ;
-; flipflop.vhd                     ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/flipflop.vhd               ;         ;
-; decoder.vhd                      ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/decoder.vhd                ;         ;
-; aula7.vhd                        ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/aula7.vhd                  ;         ;
-; decoder3x8.vhd                   ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/decoder3x8.vhd             ;         ;
-; buffer_3_state_8portas.vhd       ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/buffer_3_state_8portas.vhd ;         ;
-; buffer_3_state_1porta.vhd        ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/buffer_3_state_1porta.vhd  ;         ;
-; conversorHex7Seg.vhd             ; yes             ; User VHDL File  ; C:/Users/guilh/Documents/aula7/conversorHex7Seg.vhd       ;         ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                              ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
+; processador_aula.vhd             ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd       ;         ;
+; ULASomaSub.vhd                   ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/ULASomaSub.vhd             ;         ;
+; somaConstante.vhd                ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/somaConstante.vhd          ;         ;
+; registradorGenerico.vhd          ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/registradorGenerico.vhd    ;         ;
+; muxGenerico4x1.vhd               ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico4x1.vhd         ;         ;
+; muxGenerico2x1.vhd               ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd         ;         ;
+; memoriaROM.vhd                   ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/memoriaROM.vhd             ;         ;
+; memoriaRAM.vhd                   ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/memoriaRAM.vhd             ;         ;
+; flipflop.vhd                     ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/flipflop.vhd               ;         ;
+; edgeDetector.vhd                 ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/edgeDetector.vhd           ;         ;
+; decoder.vhd                      ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/decoder.vhd                ;         ;
+; aula7.vhd                        ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd                  ;         ;
+; decoder3x8.vhd                   ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/decoder3x8.vhd             ;         ;
+; buffer_3_state_8portas.vhd       ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_8portas.vhd ;         ;
+; buffer_3_state_1porta.vhd        ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_1porta.vhd  ;         ;
+; conversorHex7Seg.vhd             ; yes             ; User VHDL File  ; /home/daniel/Desktop/descompPROJ1/aula7/conversorHex7Seg.vhd       ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------+
@@ -241,74 +248,68 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 60             ;
+; Estimate of Logic utilization (ALMs needed) ; 495            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 98             ;
-;     -- 7 input functions                    ; 0              ;
-;     -- 6 input functions                    ; 16             ;
-;     -- 5 input functions                    ; 13             ;
-;     -- 4 input functions                    ; 56             ;
-;     -- <=3 input functions                  ; 13             ;
+; Combinational ALUT usage for logic          ; 540            ;
+;     -- 7 input functions                    ; 6              ;
+;     -- 6 input functions                    ; 331            ;
+;     -- 5 input functions                    ; 38             ;
+;     -- 4 input functions                    ; 70             ;
+;     -- <=3 input functions                  ; 95             ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 51             ;
+; Dedicated logic registers                   ; 577            ;
 ;                                             ;                ;
-; I/O pins                                    ; 103            ;
+; I/O pins                                    ; 68             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 51             ;
-; Total fan-out                               ; 754            ;
-; Average fan-out                             ; 2.12           ;
+; Maximum fan-out                             ; 575            ;
+; Total fan-out                               ; 4555           ;
+; Average fan-out                             ; 3.64           ;
 +---------------------------------------------+----------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                            ;
-+-----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------+-----------------------+--------------+
-; Compilation Hierarchy Node                    ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                            ; Entity Name           ; Library Name ;
-+-----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------+-----------------------+--------------+
-; |aula7                                        ; 98 (13)             ; 51 (0)                    ; 0                 ; 0          ; 103  ; 0            ; |aula7                                                         ; aula7                 ; work         ;
-;    |buffer_3_state_1porta:buffer_3state_KEY3| ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|buffer_3_state_1porta:buffer_3state_KEY3                ; buffer_3_state_1porta ; work         ;
-;    |buffer_3_state_1porta:buffer_FPGA_RESET|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|buffer_3_state_1porta:buffer_FPGA_RESET                 ; buffer_3_state_1porta ; work         ;
-;    |conversorHex7Seg:decoder_binario0|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario0                       ; conversorHex7Seg      ; work         ;
-;    |conversorHex7Seg:decoder_binario1|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario1                       ; conversorHex7Seg      ; work         ;
-;    |conversorHex7Seg:decoder_binario2|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario2                       ; conversorHex7Seg      ; work         ;
-;    |conversorHex7Seg:decoder_binario3|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario3                       ; conversorHex7Seg      ; work         ;
-;    |conversorHex7Seg:decoder_binario4|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario4                       ; conversorHex7Seg      ; work         ;
-;    |conversorHex7Seg:decoder_binario5|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario5                       ; conversorHex7Seg      ; work         ;
-;    |flipflop:flipflop1|                       ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop1                                      ; flipflop              ; work         ;
-;    |flipflop:flipflop2|                       ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop2                                      ; flipflop              ; work         ;
-;    |memoriaRAM:MemoriaRAM|                    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|memoriaRAM:MemoriaRAM                                   ; memoriaRAM            ; work         ;
-;    |memoriaROM:ROM_instrucao|                 ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|memoriaROM:ROM_instrucao                                ; memoriaROM            ; work         ;
-;    |processadoR_aula:processador|             ; 20 (0)              ; 17 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador                            ; processadoR_aula      ; work         ;
-;       |decoder:decoder|                       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|decoder:decoder            ; decoder               ; work         ;
-;       |muxGenerico2x1:MUX1|                   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|muxGenerico2x1:MUX1        ; muxGenerico2x1        ; work         ;
-;       |muxGenerico4x1:MUXJMP|                 ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|muxGenerico4x1:MUXJMP      ; muxGenerico4x1        ; work         ;
-;       |registradorGenerico:PC|                ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|registradorGenerico:PC     ; registradorGenerico   ; work         ;
-;       |registradorGenerico:REGA|              ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|registradorGenerico:REGA   ; registradorGenerico   ; work         ;
-;       |somaConstante:incrementaPC|            ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|somaConstante:incrementaPC ; somaConstante         ; work         ;
-;    |registradorGenerico:REG_4bit0|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit0                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:REG_4bit1|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit1                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:REG_4bit2|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit2                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:REG_4bit3|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit3                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:REG_4bit4|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit4                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:REG_4bit5|            ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit5                           ; registradorGenerico   ; work         ;
-;    |registradorGenerico:registrador_8bits|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:registrador_8bits                   ; registradorGenerico   ; work         ;
-+-----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------+-----------------------+--------------+
++--------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                 ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                 ; Entity Name         ; Library Name ;
++--------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------+---------------------+--------------+
+; |aula7                                     ; 540 (33)            ; 577 (0)                   ; 0                 ; 0          ; 68   ; 0            ; |aula7                                                              ; aula7               ; work         ;
+;    |conversorHex7Seg:decoder_binario0|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario0                            ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:decoder_binario1|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario1                            ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:decoder_binario2|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario2                            ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:decoder_binario3|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario3                            ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:decoder_binario4|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario4                            ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:decoder_binario5|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|conversorHex7Seg:decoder_binario5                            ; conversorHex7Seg    ; work         ;
+;    |decoder3x8:decoder_blocos|             ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|decoder3x8:decoder_blocos                                    ; decoder3x8          ; work         ;
+;    |edgeDetector:edgeDetector0|            ; 2 (2)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|edgeDetector:edgeDetector0                                   ; edgeDetector        ; work         ;
+;    |edgeDetector:edgeDetector1|            ; 2 (2)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|edgeDetector:edgeDetector1                                   ; edgeDetector        ; work         ;
+;    |flipflop:flipflop1|                    ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop1                                           ; flipflop            ; work         ;
+;    |flipflop:flipflop2|                    ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop2                                           ; flipflop            ; work         ;
+;    |flipflop:flipflop_debounceKEY0|        ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop_debounceKEY0                               ; flipflop            ; work         ;
+;    |flipflop:flipflop_debounce_KEY1|       ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|flipflop:flipflop_debounce_KEY1                              ; flipflop            ; work         ;
+;    |memoriaRAM:MemoriaRAM|                 ; 298 (298)           ; 512 (512)                 ; 0                 ; 0          ; 0    ; 0            ; |aula7|memoriaRAM:MemoriaRAM                                        ; memoriaRAM          ; work         ;
+;    |memoriaROM:ROM_instrucao|              ; 101 (101)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|memoriaROM:ROM_instrucao                                     ; memoriaROM          ; work         ;
+;    |processadoR_aula:processador|          ; 58 (0)              ; 27 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador                                 ; processadoR_aula    ; work         ;
+;       |ULASomaSub:ULA1|                    ; 16 (16)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|ULASomaSub:ULA1                 ; ULASomaSub          ; work         ;
+;       |decoder:decoder|                    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|decoder:decoder                 ; decoder             ; work         ;
+;       |flipflop:flipflop|                  ; 6 (6)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|flipflop:flipflop               ; flipflop            ; work         ;
+;       |muxGenerico2x1:MUX1|                ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|muxGenerico2x1:MUX1             ; muxGenerico2x1      ; work         ;
+;       |muxGenerico4x1:MUXJMP|              ; 11 (11)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|muxGenerico4x1:MUXJMP           ; muxGenerico4x1      ; work         ;
+;       |registradorGenerico:End_retorno|    ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|registradorGenerico:End_retorno ; registradorGenerico ; work         ;
+;       |registradorGenerico:PC|             ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|registradorGenerico:PC          ; registradorGenerico ; work         ;
+;       |registradorGenerico:REGA|           ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|registradorGenerico:REGA        ; registradorGenerico ; work         ;
+;       |somaConstante:incrementaPC|         ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|processadoR_aula:processador|somaConstante:incrementaPC      ; somaConstante       ; work         ;
+;    |registradorGenerico:REG_4bit0|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit0                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG_4bit1|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit1                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG_4bit2|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit2                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG_4bit3|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit3                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG_4bit4|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit4                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG_4bit5|         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:REG_4bit5                                ; registradorGenerico ; work         ;
+;    |registradorGenerico:registrador_8bits| ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |aula7|registradorGenerico:registrador_8bits                        ; registradorGenerico ; work         ;
++--------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                    ;
-+-------------------------------------------------------------------------+---------------------------------------------+
-; Register name                                                           ; Reason for Removal                          ;
-+-------------------------------------------------------------------------+---------------------------------------------+
-; processadoR_aula:processador|registradorGenerico:End_retorno|DOUT[0]    ; Stuck at GND due to stuck port clock_enable ;
-; processadoR_aula:processador|flipflop:flipflop|DOUT                     ; Stuck at GND due to stuck port clock_enable ;
-; processadoR_aula:processador|registradorGenerico:End_retorno|DOUT[1..8] ; Stuck at GND due to stuck port clock_enable ;
-; Total Number of Removed Registers = 10                                  ;                                             ;
-+-------------------------------------------------------------------------+---------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -316,14 +317,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 51    ;
+; Total registers                              ; 577   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Synchronous Load   ; 8     ;
+; Number of registers using Asynchronous Clear ; 2     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 40    ;
+; Number of registers using Clock Enable       ; 561   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |aula7|processadoR_aula:processador|registradorGenerico:PC|DOUT[7] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------+
@@ -331,9 +341,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+-------+----------------------------------------------+
 ; Parameter Name ; Value ; Type                                         ;
 +----------------+-------+----------------------------------------------+
-; DATA_WIDTH     ; 8     ; Signed Integer                               ;
-; ADDR_WIDTH     ; 9     ; Signed Integer                               ;
-; simulacao      ; false ; Enumerated                                   ;
+; DataWidth      ; 8     ; Signed Integer                               ;
+; AddrWidth      ; 13    ; Signed Integer                               ;
+; simulacao      ; true  ; Enumerated                                   ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; datawidth      ; 13    ; Signed Integer                               ;
+; addrwidth      ; 9     ; Signed Integer                               ;
 +----------------+-------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -346,17 +367,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; datawidth      ; 8     ; Signed Integer                            ;
 ; addrwidth      ; 6     ; Signed Integer                            ;
 +----------------+-------+-------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: memoriaROM:ROM_instrucao ;
-+----------------+-------+----------------------------------------------+
-; Parameter Name ; Value ; Type                                         ;
-+----------------+-------+----------------------------------------------+
-; datawidth      ; 13    ; Signed Integer                               ;
-; addrwidth      ; 9     ; Signed Integer                               ;
-+----------------+-------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -543,6 +553,46 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; larguradados   ; 4     ; Signed Integer                                    ;
 +----------------+-------+---------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: flipflop:flipflop_debounceKEY0 ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; larguradados   ; 1     ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: flipflop:flipflop_debounce_KEY1 ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; larguradados   ; 1     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Port Connectivity Checks: "flipflop:flipflop_debounce_KEY1" ;
++--------+-------+----------+---------------------------------+
+; Port   ; Type  ; Severity ; Details                         ;
++--------+-------+----------+---------------------------------+
+; din    ; Input ; Info     ; Stuck at VCC                    ;
+; enable ; Input ; Info     ; Stuck at VCC                    ;
++--------+-------+----------+---------------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "flipflop:flipflop_debounceKEY0" ;
++--------+-------+----------+--------------------------------+
+; Port   ; Type  ; Severity ; Details                        ;
++--------+-------+----------+--------------------------------+
+; din    ; Input ; Info     ; Stuck at VCC                   ;
+; enable ; Input ; Info     ; Stuck at VCC                   ;
++--------+-------+----------+--------------------------------+
 
 
 +-----------------------------------------------------------+
@@ -762,23 +812,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 51                          ;
-;     ENA               ; 40                          ;
-;     plain             ; 11                          ;
-; arriav_io_obuf        ; 8                           ;
-; arriav_lcell_comb     ; 99                          ;
-;     arith             ; 9                           ;
+; arriav_ff             ; 577                         ;
+;     CLR               ; 2                           ;
+;     ENA               ; 553                         ;
+;     ENA SLD           ; 8                           ;
+;     plain             ; 14                          ;
+; arriav_lcell_comb     ; 540                         ;
+;     arith             ; 18                          ;
 ;         1 data inputs ; 9                           ;
-;     normal            ; 90                          ;
-;         1 data inputs ; 1                           ;
-;         3 data inputs ; 4                           ;
-;         4 data inputs ; 56                          ;
-;         5 data inputs ; 13                          ;
-;         6 data inputs ; 16                          ;
-; boundary_port         ; 103                         ;
+;         4 data inputs ; 1                           ;
+;         5 data inputs ; 8                           ;
+;     extend            ; 6                           ;
+;         7 data inputs ; 6                           ;
+;     normal            ; 516                         ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 73                          ;
+;         3 data inputs ; 11                          ;
+;         4 data inputs ; 69                          ;
+;         5 data inputs ; 30                          ;
+;         6 data inputs ; 331                         ;
+; boundary_port         ; 68                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 1.76                        ;
+; Max LUT depth         ; 11.00                       ;
+; Average LUT depth     ; 7.18                        ;
 +-----------------------+-----------------------------+
 
 
@@ -787,7 +843,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -797,100 +853,101 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 19 18:35:21 2022
+    Info: Processing started: Thu Apr 28 09:25:23 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off aula7 -c aula7
-Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file processador_aula.vhd
-    Info (12022): Found design unit 1: processador_aula-arquitetura File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 26
-    Info (12023): Found entity 1: processadoR_aula File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file ulasomasub.vhd
-    Info (12022): Found design unit 1: ULASomaSub-comportamento File: C:/Users/guilh/Documents/aula7/ULASomaSub.vhd Line: 15
-    Info (12023): Found entity 1: ULASomaSub File: C:/Users/guilh/Documents/aula7/ULASomaSub.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file somaconstante.vhd
-    Info (12022): Found design unit 1: somaConstante-comportamento File: C:/Users/guilh/Documents/aula7/somaConstante.vhd Line: 18
-    Info (12023): Found entity 1: somaConstante File: C:/Users/guilh/Documents/aula7/somaConstante.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file registradorretorno.vhd
-    Info (12022): Found design unit 1: registradorRetorno-comportamento File: C:/Users/guilh/Documents/aula7/registradorRetorno.vhd Line: 15
-    Info (12023): Found entity 1: registradorRetorno File: C:/Users/guilh/Documents/aula7/registradorRetorno.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file registradorgenerico.vhd
-    Info (12022): Found design unit 1: registradorGenerico-comportamento File: C:/Users/guilh/Documents/aula7/registradorGenerico.vhd Line: 15
-    Info (12023): Found entity 1: registradorGenerico File: C:/Users/guilh/Documents/aula7/registradorGenerico.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file muxgenerico4x1.vhd
-    Info (12022): Found design unit 1: muxGenerico4x1-comportamento File: C:/Users/guilh/Documents/aula7/muxGenerico4x1.vhd Line: 14
-    Info (12023): Found entity 1: muxGenerico4x1 File: C:/Users/guilh/Documents/aula7/muxGenerico4x1.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file muxgenerico2x1.vhd
-    Info (12022): Found design unit 1: muxGenerico2x1-comportamento File: C:/Users/guilh/Documents/aula7/muxGenerico2x1.vhd Line: 14
-    Info (12023): Found entity 1: muxGenerico2x1 File: C:/Users/guilh/Documents/aula7/muxGenerico2x1.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file memoriarom.vhd
-    Info (12022): Found design unit 1: memoriaROM-assincrona File: C:/Users/guilh/Documents/aula7/memoriaROM.vhd Line: 16
-    Info (12023): Found entity 1: memoriaROM File: C:/Users/guilh/Documents/aula7/memoriaROM.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file memoriaram.vhd
-    Info (12022): Found design unit 1: memoriaRAM-rtl File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 22
-    Info (12023): Found entity 1: memoriaRAM File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 6
+    Info (12022): Found design unit 1: processador_aula-arquitetura File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 26
+    Info (12023): Found entity 1: processadoR_aula File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file ULASomaSub.vhd
+    Info (12022): Found design unit 1: ULASomaSub-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/ULASomaSub.vhd Line: 15
+    Info (12023): Found entity 1: ULASomaSub File: /home/daniel/Desktop/descompPROJ1/aula7/ULASomaSub.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file somaConstante.vhd
+    Info (12022): Found design unit 1: somaConstante-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/somaConstante.vhd Line: 18
+    Info (12023): Found entity 1: somaConstante File: /home/daniel/Desktop/descompPROJ1/aula7/somaConstante.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file registradorRetorno.vhd
+    Info (12022): Found design unit 1: registradorRetorno-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/registradorRetorno.vhd Line: 15
+    Info (12023): Found entity 1: registradorRetorno File: /home/daniel/Desktop/descompPROJ1/aula7/registradorRetorno.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file registradorGenerico.vhd
+    Info (12022): Found design unit 1: registradorGenerico-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/registradorGenerico.vhd Line: 15
+    Info (12023): Found entity 1: registradorGenerico File: /home/daniel/Desktop/descompPROJ1/aula7/registradorGenerico.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxGenerico4x1.vhd
+    Info (12022): Found design unit 1: muxGenerico4x1-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico4x1.vhd Line: 14
+    Info (12023): Found entity 1: muxGenerico4x1 File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico4x1.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxGenerico2x1.vhd
+    Info (12022): Found design unit 1: muxGenerico2x1-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 14
+    Info (12023): Found entity 1: muxGenerico2x1 File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file memoriaROM.vhd
+    Info (12022): Found design unit 1: memoriaROM-assincrona File: /home/daniel/Desktop/descompPROJ1/aula7/memoriaROM.vhd Line: 16
+    Info (12023): Found entity 1: memoriaROM File: /home/daniel/Desktop/descompPROJ1/aula7/memoriaROM.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file memoriaRAM.vhd
+    Info (12022): Found design unit 1: memoriaRAM-rtl File: /home/daniel/Desktop/descompPROJ1/aula7/memoriaRAM.vhd Line: 22
+    Info (12023): Found entity 1: memoriaRAM File: /home/daniel/Desktop/descompPROJ1/aula7/memoriaRAM.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file flipflop.vhd
-    Info (12022): Found design unit 1: flipflop-comportamento File: C:/Users/guilh/Documents/aula7/flipflop.vhd Line: 15
-    Info (12023): Found entity 1: flipflop File: C:/Users/guilh/Documents/aula7/flipflop.vhd Line: 4
-Info (12021): Found 3 design units, including 1 entities, in source file edgedetector.vhd
-    Info (12022): Found design unit 1: edgeDetector-bordaSubida File: C:/Users/guilh/Documents/aula7/edgeDetector.vhd Line: 10
-    Info (12022): Found design unit 2: edgeDetector-bordaDescida File: C:/Users/guilh/Documents/aula7/edgeDetector.vhd Line: 23
-    Info (12023): Found entity 1: edgeDetector File: C:/Users/guilh/Documents/aula7/edgeDetector.vhd Line: 4
+    Info (12022): Found design unit 1: flipflop-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/flipflop.vhd Line: 15
+    Info (12023): Found entity 1: flipflop File: /home/daniel/Desktop/descompPROJ1/aula7/flipflop.vhd Line: 4
+Info (12021): Found 3 design units, including 1 entities, in source file edgeDetector.vhd
+    Info (12022): Found design unit 1: edgeDetector-bordaSubida File: /home/daniel/Desktop/descompPROJ1/aula7/edgeDetector.vhd Line: 10
+    Info (12022): Found design unit 2: edgeDetector-bordaDescida File: /home/daniel/Desktop/descompPROJ1/aula7/edgeDetector.vhd Line: 23
+    Info (12023): Found entity 1: edgeDetector File: /home/daniel/Desktop/descompPROJ1/aula7/edgeDetector.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file decoder.vhd
-    Info (12022): Found design unit 1: decoder-comportamento File: C:/Users/guilh/Documents/aula7/decoder.vhd Line: 12
-    Info (12023): Found entity 1: decoder File: C:/Users/guilh/Documents/aula7/decoder.vhd Line: 4
+    Info (12022): Found design unit 1: decoder-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/decoder.vhd Line: 12
+    Info (12023): Found entity 1: decoder File: /home/daniel/Desktop/descompPROJ1/aula7/decoder.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file aula7.vhd
-    Info (12022): Found design unit 1: aula7-arch_name File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 31
-    Info (12023): Found entity 1: aula7 File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 5
+    Info (12022): Found design unit 1: aula7-arch_name File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 38
+    Info (12023): Found entity 1: aula7 File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file decoder3x8.vhd
-    Info (12022): Found design unit 1: decoder3x8-comportamento File: C:/Users/guilh/Documents/aula7/decoder3x8.vhd Line: 10
-    Info (12023): Found entity 1: decoder3x8 File: C:/Users/guilh/Documents/aula7/decoder3x8.vhd Line: 4
+    Info (12022): Found design unit 1: decoder3x8-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/decoder3x8.vhd Line: 10
+    Info (12023): Found entity 1: decoder3x8 File: /home/daniel/Desktop/descompPROJ1/aula7/decoder3x8.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file buffer_3_state_8portas.vhd
-    Info (12022): Found design unit 1: buffer_3_state_8portas-comportamento File: C:/Users/guilh/Documents/aula7/buffer_3_state_8portas.vhd Line: 11
-    Info (12023): Found entity 1: buffer_3_state_8portas File: C:/Users/guilh/Documents/aula7/buffer_3_state_8portas.vhd Line: 4
+    Info (12022): Found design unit 1: buffer_3_state_8portas-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_8portas.vhd Line: 11
+    Info (12023): Found entity 1: buffer_3_state_8portas File: /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_8portas.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file buffer_3_state_1porta.vhd
-    Info (12022): Found design unit 1: buffer_3_state_1porta-comportamento File: C:/Users/guilh/Documents/aula7/buffer_3_state_1porta.vhd Line: 11
-    Info (12023): Found entity 1: buffer_3_state_1porta File: C:/Users/guilh/Documents/aula7/buffer_3_state_1porta.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file conversorhex7seg.vhd
-    Info (12022): Found design unit 1: conversorHex7Seg-comportamento File: C:/Users/guilh/Documents/aula7/conversorHex7Seg.vhd Line: 17
-    Info (12023): Found entity 1: conversorHex7Seg File: C:/Users/guilh/Documents/aula7/conversorHex7Seg.vhd Line: 4
+    Info (12022): Found design unit 1: buffer_3_state_1porta-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_1porta.vhd Line: 11
+    Info (12023): Found entity 1: buffer_3_state_1porta File: /home/daniel/Desktop/descompPROJ1/aula7/buffer_3_state_1porta.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file conversorHex7Seg.vhd
+    Info (12022): Found design unit 1: conversorHex7Seg-comportamento File: /home/daniel/Desktop/descompPROJ1/aula7/conversorHex7Seg.vhd Line: 17
+    Info (12023): Found entity 1: conversorHex7Seg File: /home/daniel/Desktop/descompPROJ1/aula7/conversorHex7Seg.vhd Line: 4
 Info (12127): Elaborating entity "aula7" for the top level hierarchy
-Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 84
-Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 87
-Info (12128): Elaborating entity "processadoR_aula" for hierarchy "processadoR_aula:processador" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 91
-Info (12128): Elaborating entity "muxGenerico2x1" for hierarchy "processadoR_aula:processador|muxGenerico2x1:MUX1" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 55
-Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "processadoR_aula:processador|muxGenerico4x1:MUXJMP" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 64
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:REGA" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 73
-Info (12128): Elaborating entity "flipflop" for hierarchy "processadoR_aula:processador|flipflop:flipflop" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 77
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:End_retorno" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 82
-Info (12128): Elaborating entity "somaConstante" for hierarchy "processadoR_aula:processador|somaConstante:incrementaPC" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 90
-Info (12128): Elaborating entity "ULASomaSub" for hierarchy "processadoR_aula:processador|ULASomaSub:ULA1" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 94
-Info (12128): Elaborating entity "decoder" for hierarchy "processadoR_aula:processador|decoder:decoder" File: C:/Users/guilh/Documents/aula7/processador_aula.vhd Line: 98
-Info (12128): Elaborating entity "decoder3x8" for hierarchy "decoder3x8:decoder_blocos" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 94
-Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoder_binario0" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 111
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG_4bit0" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 133
-Info (12128): Elaborating entity "buffer_3_state_8portas" for hierarchy "buffer_3_state_8portas:buffer_3state" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 151
-Info (12128): Elaborating entity "buffer_3_state_1porta" for hierarchy "buffer_3_state_1porta:buffer_3state_1SW8" File: C:/Users/guilh/Documents/aula7/aula7.vhd Line: 157
+Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 101
+Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 104
+Info (12128): Elaborating entity "processadoR_aula" for hierarchy "processadoR_aula:processador" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 114
+Info (12128): Elaborating entity "muxGenerico2x1" for hierarchy "processadoR_aula:processador|muxGenerico2x1:MUX1" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 55
+Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "processadoR_aula:processador|muxGenerico4x1:MUXJMP" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 64
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:REGA" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 73
+Info (12128): Elaborating entity "flipflop" for hierarchy "processadoR_aula:processador|flipflop:flipflop" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 77
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "processadoR_aula:processador|registradorGenerico:End_retorno" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 82
+Info (12128): Elaborating entity "somaConstante" for hierarchy "processadoR_aula:processador|somaConstante:incrementaPC" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 90
+Info (12128): Elaborating entity "ULASomaSub" for hierarchy "processadoR_aula:processador|ULASomaSub:ULA1" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 94
+Info (12128): Elaborating entity "decoder" for hierarchy "processadoR_aula:processador|decoder:decoder" File: /home/daniel/Desktop/descompPROJ1/aula7/processador_aula.vhd Line: 98
+Info (12128): Elaborating entity "decoder3x8" for hierarchy "decoder3x8:decoder_blocos" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 129
+Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoder_binario0" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 148
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG_4bit0" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 168
+Info (12128): Elaborating entity "buffer_3_state_8portas" for hierarchy "buffer_3_state_8portas:buffer_3state" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 188
+Info (12128): Elaborating entity "buffer_3_state_1porta" for hierarchy "buffer_3_state_1porta:buffer_3state_1SW8" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 191
+Info (12129): Elaborating entity "edgeDetector" using architecture "A:bordasubida" for hierarchy "edgeDetector:edgeDetector0" File: /home/daniel/Desktop/descompPROJ1/aula7/aula7.vhd Line: 215
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276007): RAM logic "memoriaRAM:MemoriaRAM|ram" is uninferred due to asynchronous read logic File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 28
+    Info (276007): RAM logic "memoriaRAM:MemoriaRAM|ram" is uninferred due to asynchronous read logic File: /home/daniel/Desktop/descompPROJ1/aula7/memoriaRAM.vhd Line: 28
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[0]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[0]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[1]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[1]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[2]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[2]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[3]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[3]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[4]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[4]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[5]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[5]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[6]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[6]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
-    Warning (13047): Converted the fan-out from the tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[7]" to the node "processadoR_aula:processador|muxGenerico2x1:MUX1|saida_MUX[7]" into an OR gate File: C:/Users/guilh/Documents/aula7/memoriaRAM.vhd Line: 18
+    Warning (13048): Converted tri-state node "dadolidoRAM[7]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[6]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[5]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[4]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[3]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[2]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[1]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
+    Warning (13048): Converted tri-state node "dadolidoRAM[0]" into a selector File: /home/daniel/Desktop/descompPROJ1/aula7/muxGenerico2x1.vhd Line: 10
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 241 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1171 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
-    Info (21059): Implemented 87 output pins
-    Info (21061): Implemented 138 logic cells
+    Info (21059): Implemented 52 output pins
+    Info (21061): Implemented 1103 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 4872 megabytes
-    Info: Processing ended: Tue Apr 19 18:35:29 2022
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Peak virtual memory: 497 megabytes
+    Info: Processing ended: Thu Apr 28 09:25:32 2022
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:20
 
 
