@@ -3,12 +3,14 @@
 %LABEL LOOP_INICIAL
 JSR @SR_INICIALIZACAO
 NOP
+JSR @SR_ATUALIZAR_DISPLAY
+NOP
 JSR @SR_SET_LIMIT
 
 %LABEL MAIN_LOOP
 JSR @SR_ATUALIZAR_DISPLAY
 NOP
-JSR @SR_VERIFICA_LIMITE --TODO: Verificar se flag_inibicao está funcionando
+JSR @SR_VERIFICA_LIMITE      #--TODO: Verificar se flag_inibicao está funcionando
 NOP
 JSR @SR_INCREMENTO_CONTADOR
 NOP
@@ -167,10 +169,11 @@ RET $0
 LDA  @KEY0                       # Carrega KEY0
 CEQ  @ADDR_CTE1                  # Key0 == 1?
 STA  @CLEAR_KEY0                 # Reset key0
-JEQ  @SR_INCREMENTO_UNIDADE      # If key0==1: incrementacontador
+JEQ  @SR_VERIFICA_FLAG_INIBICAO
 NOP
 RET  $0
 
+%LABEL SR_VERIFICA_FLAG_INIBICAO
 LDA  @ADDR_FLAG_INIBICAO         # LOAD FLAG INIBICAO
 CEQ  @ADDR_CTE0                  # Inibicao == 0?
 JEQ  @SR_INCREMENTO_UNIDADE      # IF inib == 0 : incrementa, else RET
@@ -348,7 +351,7 @@ JMP @SR_NAO_ATINGIU_LIMITE           #-- JUMP SR 'LIMITE NAO ATINGIDO'
 
 
 %LABEL SR_ATINGIU_LIMITE             #-- SUB-ROTINA LIMITE A): MARCA LIMITE ATINGIDO - DANI
-LDA $0 
+LDA $63 
 STA @LEDR                            #-- Clear LEDR, as limit has reached
 
 LDA @ADDR_CTE1                       #-- LOAD CTE 1
