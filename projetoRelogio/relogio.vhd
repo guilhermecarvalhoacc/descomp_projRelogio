@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 entity relogio is
   generic   (
-    DataWidth   : natural :=  8;
+    DataWidth   : natural  :=  8;
 	 dataWidthRom : natural := 16;
 	 addrWidthRom : natural := 9;
-    simulacao   : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
+    simulacao   : boolean  := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
 
   port   (
@@ -248,7 +248,7 @@ habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2
 habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
 habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
 
-limpa_leituraKEY0 <= enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY0 <=      enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 limpa_leituraKEY1 <= (not enderecoRAM(0)) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 
 --habilita_KEY0_teste
