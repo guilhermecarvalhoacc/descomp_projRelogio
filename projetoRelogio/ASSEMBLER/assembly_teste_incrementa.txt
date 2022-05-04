@@ -1,0 +1,28 @@
+%LABEL INICIO
+LDI R3, $0        #   Carrega o acumulador com o valor 0
+STA R3, @0        #   Armazena o valor do acumulador em MEM[0] (constante 0)
+STA R3, @2        #   Armazena o valor do acumulador em MEM[2] (contador)
+LDI R3, $1        #   Carrega o acumulador com o valor 1
+STA R3, @1        #   Armazena o valor do acumulador em MEM[1] (constante 1)
+
+LDI R0, $0
+LDI R1, $1
+
+NOP
+%LABEL VERIFICA
+CEQ R0, @KEY2        #   Compara com o valor de MEM[0] (constante 0)
+JEQ @VERIFICA        #   Desvia se igual a 0 (botão não foi pressionado)
+NOP
+JSR @INCREMENTO      #   O botão foi pressionado, chama a sub-rotina de incremento
+NOP
+JMP @VERIFICA        #  Fecha o laço principal, faz uma nova leitura de KEY0
+NOP
+
+%LABEL INCREMENTO
+STA  R3, @CLEAR_KEY2      #  Limpa a leitura do botão
+LDA  R3, @2        #  Carrega o valor de MEM[2] (contador)
+SOMA R3, @1        #  Soma com a constante em MEM[1]
+STA  R3, @2        #  Salva o incremento em MEM[2] (contador)
+STA  R3, @LEDR9    #  Armazna o valor do bit0 do acumulador no LDR9
+STA  R3, @HEX0
+RET           #  Retorna da sub-rotina

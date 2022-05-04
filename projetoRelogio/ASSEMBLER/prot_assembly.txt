@@ -1,0 +1,34 @@
+Endereço em Decimal	Periférico	Largura dos Dados	Tipo de Acesso	Bloco (Página) de Memória
+0   ~ 63	RAM	8 bits	Leitura/Escrita	0
+64  ~ 127	Reservado	–	–	1
+128 ~ 191	Reservado	–	–	2
+192 ~ 255	Reservado	–	–	3
+256	LEDR0 ~ LEDR7	8 bits	Escrita	4
+257	LEDR8	1 bit	Escrita	4
+258	LEDR9	1 bit	Escrita	4
+259 ~ 287	Reservado	–	–	4
+288	HEX0	4 bits	Escrita	4
+289	HEX1	4 bits	Escrita	4
+290	HEX2	4 bits	Escrita	4
+291	HEX3	4 bits	Escrita	4
+292	HEX4	4 bits	Escrita	4
+293	HEX5	4 bits	Escrita	4
+294 ~ 319	Reservado	–	–	4
+320	SW0 ~ SW7	8 bits	Leitura	5
+321	SW8	1 bit	Leitura	5
+322	SW9	1 bit	Leitura	5
+323 ~ 351	Reservado	–	–	5
+352	KEY0	1 bit	Leitura	5
+353	KEY1	1 bit	Leitura	5
+354	KEY2	1 bit	Leitura	5
+355	KEY3	1 bit	Leitura	5
+356	FPGA_RESET	1 bit	Leitura	5
+357 ~ 383	Reservado	–	–	5
+384 ~ 447	Reservado	–	–	6
+448 ~ 510	Reservado	–	–	7
+
+508 limpa_leituraKEY2 <=      enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+509 limpa_leituraKEY3 <= (not enderecoRAM(0)) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+510	Limpa Leitura KEY1	–	Escrita	7
+511	Limpa Leitura KEY0	–	Escrita	7
+
