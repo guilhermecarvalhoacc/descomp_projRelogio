@@ -38,6 +38,10 @@ end entity;
 
 architecture arch_name of relogio is
   signal clk                      : std_logic;
+  signal muxBaseTempoA            : std_logic;
+  signal muxBaseTempoB            : std_logic;
+  
+  
   signal dadoROM                  : std_logic_vector (dataWidthRom-1 downto 0);
   signal enderecoROM              : std_logic_vector (addrWidthRom-1 downto 0);
   signal leituraRAM               : std_logic;
@@ -207,8 +211,8 @@ buffer_FPGA_RESET : entity work.buffer_3_state_1porta
           port map (entrada => FPGA_RESET_N, habilita => habilita_FPGA_RESET, saida => dadolidoRAM);		
 
 -- debounce
-edgeDetector0 : entity work.edgeDetector(bordaSubida) 
-          port map (clk => CLOCK_50, entrada => NOT KEY(0), saida => clock_flipflop0);
+--edgeDetector0 : entity work.edgeDetector(bordaSubida) 
+--          port map (clk => CLOCK_50, entrada => NOT KEY(0), saida => clock_flipflop0);
 
 edgeDetector1 : entity work.edgeDetector(bordaSubida) 
           port map (clk => CLOCK_50, entrada => NOT KEY(1), saida => clock_flipflop1);
@@ -220,7 +224,19 @@ flipflop_debounceKEY0  : entity work.flipflop generic map (larguraDados => 1)
 flipflop_debounce_KEY1 : entity work.flipflop generic map (larguraDados => 1)
           port map (DIN => '1', DOUT => saida_debounceKEY1, ENABLE => '1', CLK => clock_flipflop1, RST => limpa_leituraKEY1);
 
+
+divisorSec : entity work.divisorGenerico generic map (divisor => 25000000)   -- divide por 10.
+			 port map (clk => clk, saida_clk => muxBaseTempoA);
 	
+divisorFast : entity work.divisorGenerico generic map (divisor => 50000)   -- divide por 10.
+			 port map (clk => clk, saida_clk => muxBaseTempoB);
+	
+muxBaseTempo :  entity work.muxBaseTempo  generic map (larguraDados => 1)
+        port map(entradaA_MUX => muxBaseTempoA,
+                 entradaB_MUX => muxBaseTempoB,
+                 seletor_MUX  => SW(8),
+                 saida_MUX    => clock_flipflop0);
+
 -- para os LEDS:
 flag_flipflop1       <= saidas_decoder(4) and EscritaRAM and saidas_decoder_end(2) and not enderecoRAM(5);
 flag_flipflop2       <= saidas_decoder(4) and EscritaRAM and saidas_decoder_end(1) and not enderecoRAM(5);	
