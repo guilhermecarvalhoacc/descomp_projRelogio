@@ -15,30 +15,30 @@ REG2 -> CTE9
 REG3 -> REG uso genérico
 '''
 
-ASSEMBLY_FILE = 'assembly.txt'
-#ASSEMBLY_FILE = 'assembly_testebotao.txt'
+ASSEMBLY_FILE = 'assembly2.txt'
+#ASSEMBLY_FILE = 'assembly_teste_incrementa.txt'
 OUT_BIN       = 'BIN.txt'
 
 LIST_OPCODES = ['NOP', 'LDA', 'SOMA', 'SUB', 'LDI', 'STA', 'JMP', 'JEQ', 'CEQ', 'JSR', 'RET']
 
 DIC_CONSTANTES_MEM_ADDR = {
     #'ADDR_CTE0'                     :   '0',    #RAM[0]   - @0
-    #'ADDR_CTE1'                     :   '1',    #RAM[1]   - @1 
+    'ADDR_CTE1'                      :   '1',    #RAM[1]   - @1 
     #'ADDR_CTE9'                     :   '9',    #RAM[9]   - @9 
 
-    'ADDR_COUNTER_UNIDADE'          :  '10',    #RAM[10]  - @10
-    'ADDR_COUNTER_DEZENA'           :  '11',    #RAM[11]  - @11
-    'ADDR_COUNTER_CENTENA'          :  '12',    #RAM[12]  - @12
-    'ADDR_COUNTER_MILHAR'           :  '13',    #RAM[13]  - @13
-    'ADDR_COUNTER_DEZ_MILHAR'       :  '14',    #RAM[14]  - @14
-    'ADDR_COUNTER_CEN_MILHAR'       :  '15',    #RAM[15]  - @15
+    'ADDR_COUNTER_SEG_UN'           :  '10',    #RAM[10]  - @10
+    'ADDR_COUNTER_SEG_DEZ'          :  '11',    #RAM[11]  - @11
+    'ADDR_COUNTER_MIN_UN'           :  '12',    #RAM[12]  - @12
+    'ADDR_COUNTER_MIN_DEZ'          :  '13',    #RAM[13]  - @13
+    'ADDR_COUNTER_HOR_UN'           :  '14',    #RAM[14]  - @14
+    'ADDR_COUNTER_HOR_DEZ'          :  '15',    #RAM[15]  - @15
 
-    'ADDR_LIMIT_COUNTER_UNIDADE'    :  '16',    #RAM[16]  - @16
-    'ADDR_LIMIT_COUNTER_DEZENA'     :  '17',    #RAM[17]  - @17
-    'ADDR_LIMIT_COUNTER_CENTENA'    :  '18',    #RAM[18]  - @18
-    'ADDR_LIMIT_COUNTER_MILHAR'     :  '19',    #RAM[19]  - @19
-    'ADDR_LIMIT_COUNTER_DEZ_MILHAR' :  '20',    #RAM[20]  - @20
-    'ADDR_LIMIT_COUNTER_CEN_MILHAR' :  '21',    #RAM[21]  - @21
+    'ADDR_LIMIT_SEG_UN'             :  '16',    #RAM[16]  - @16
+    'ADDR_LIMIT_SEG_DEZ'            :  '17',    #RAM[17]  - @17
+    'ADDR_LIMIT_MIN_UN'             :  '18',    #RAM[18]  - @18
+    'ADDR_LIMIT_MIN_DEZ'            :  '19',    #RAM[19]  - @19
+    'ADDR_LIMIT_HOR_UN'             :  '20',    #RAM[20]  - @20
+    'ADDR_LIMIT_HOR_DEZ'            :  '21',    #RAM[21]  - @21
 
     'ADDR_FLAG_OVERFLOW'            :  '22',    #RAM[22]  - @22
     'ADDR_FLAG_INIBICAO'            :  '23',    #RAM[23]  - @23
@@ -54,6 +54,8 @@ DIC_CONSTANTES_MEM_ADDR = {
     'HEX5'                          : '293',
 
     "LEDR"                          : "256",
+    "LEDR8"                         : "257",
+    "LEDR9"                         : "258",
     "SW0"                           : "320",
     "SW1"                           : "320",
     "SW2"                           : "320",
@@ -149,13 +151,13 @@ def convert_assembly(assembly_lines):
 
         elif line.startswith('NOP'):
             instruction0 = format_corrector(int_to_hex(0))
-            INSTR = f"tmp ({numero_instrucao}) := NOP & R1 & {instruction0};" # NOP '0'
+            INSTR = f"tmp ({numero_instrucao}) := NOP & R0 & {instruction0};" # NOP '0'
             INSTRUCOES.append(INSTR)
             numero_instrucao += 1
         
         elif 'RET' in line:
             instruction0 = format_corrector(int_to_hex(0))
-            INSTR = f"tmp ({numero_instrucao}) := RET & R1 & {instruction0};" # RET '0'
+            INSTR = f"tmp ({numero_instrucao}) := RET & R0 & {instruction0};" # RET '0'
             INSTRUCOES.append(INSTR)
             numero_instrucao += 1
 
@@ -169,7 +171,7 @@ def convert_assembly(assembly_lines):
             else:
                 comentary = ''
             
-            #print(line)
+            print(line)
             opcode, line_sem_opcode = get_opcode(line)
             
             if opcode in ['JSR', 'JEQ', 'JMP']:
@@ -178,13 +180,15 @@ def convert_assembly(assembly_lines):
                     rom_addr = DIC_CONSTANTES_MEM_ADDR[rom_addr]
                     hex_rom_addr = int_to_hex(rom_addr)
                     imediato     = format_corrector(hex_rom_addr)
-                    reg          = 'R1'
+                    reg          = 'R0'
                     INSTR = f"tmp ({numero_instrucao}) := {opcode} & {reg} & {imediato}; \t-- {opcode} {line_sem_opcode} | {comentary}"
                     INSTRUCOES.append(INSTR)
                     numero_instrucao += 1
                     
                 else:
                     print(f'Erro na linha: {line}')
+                    #print(DIC_CONSTANTES_MEM_ADDR)
+                    exit()
 
 
             elif '@' in line:
@@ -204,6 +208,7 @@ def convert_assembly(assembly_lines):
                 numero_instrucao += 1
             else:
                 print(f'Erro com a linha: {line}')
+                exit()
 
     return INSTRUCOES
 
@@ -218,3 +223,4 @@ def main():
 
 if __name__=='__main__':
     main()
+    print('Finalizado!')
