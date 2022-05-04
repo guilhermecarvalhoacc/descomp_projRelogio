@@ -268,49 +268,48 @@ JMP @SHOULD_CONFIG_DESP
 NOP 
 
 %LABEL SHOULD_CONFIG_DESP
-CEQ R1, @KEY2
-JEQ @PRE_CONFIG_DESP_MIN_UN
+CEQ R1, @KEY2                  #Verifica KEY2 pressionada
+JEQ @PRE_CONFIG_DESP_MIN_UN    #se foi pressionada começa configuração
 NOP
 RET
 
 %LABEL PRE_CONFIG_DESP_MIN_UN
 STA R4, @CLEAR_KEY2            # RST KEY2
-STA R4, @CLEAR_KEY1            # RST KEY1
 LDI R4, $4                     # LOAD 4 em R4
 STA R4, @LEDR                  # Acende terceiro LEDR
 STA R0, @DESP_SEG_UN           # Configura despertador para segundo==0
 STA R0, @DESP_SEG_DEZ          # Configura despertador para segundo==0
-STA R0, @HEX0
+STA R0, @HEX0                  # Zera os dois hex
 STA R0, @HEX1
 
 %LABEL CONFIG_DESP_MIN_UN
-LDA R4, @SWR
-STA R4, @DESP_MIN_UN
-STA R4, @HEX2
-CEQ R1, @KEY1
-JEQ @PRE_CONFIG_DESP_MIN_DEZ
+LDA R4, @SWR                   # Carrega o SW
+STA R4, @DESP_MIN_UN           # Guarda na unidade de minuto (despertador)
+STA R4, @HEX2                  # Mostra no hex2
+CEQ R1, @KEY2                  # Key1 apertado?
+JEQ @PRE_CONFIG_DESP_MIN_DEZ   # if key1=1 : configura a dezena do minuto  (despertador)
 NOP
 JMP @CONFIG_DESP_MIN_UN
 
 
 %LABEL PRE_CONFIG_DESP_MIN_DEZ
-STA R4, @CLEAR_KEY1            # RST KEY2
+STA R4, @CLEAR_KEY2            # RST KEY2
 LDI R4, $8                     # LOAD 8 em R4
 STA R4, @LEDR                  # Acende quarto LEDR
 
 %LABEL CONFIG_DESP_MIN_DEZ
-LDA R4, @SWR
-STA R4, @DESP_MIN_DEZ
-STA R4, @HEX3
-CEQ R1, @KEY1
+LDA R4, @SWR                   # Carrega o SW
+STA R4, @DESP_MIN_DEZ          # Guarda no despertador dezena de minuto
+STA R4, @HEX3                  # mostra no hex3
+CEQ R1, @KEY2                  # Key2 apertada?
 JEQ @PRE_CONFIG_DESP_HOR_UN
 NOP
-JMP @CONFIG_MIN_DEZ
+JMP @CONFIG_DESP_MIN_DEZ
 
 
 
 %LABEL PRE_CONFIG_DESP_HOR_UN
-STA R4, @CLEAR_KEY1            # RST KEY2
+STA R4, @CLEAR_KEY2            # RST KEY2
 LDI R4, $16                    # LOAD 16 em R4
 STA R4, @LEDR                  # Acende quarto LEDR
 
@@ -318,13 +317,13 @@ STA R4, @LEDR                  # Acende quarto LEDR
 LDA R4, @SWR
 STA R4, @DESP_HOR_UN
 STA R4, @HEX4
-CEQ R1, @KEY1
+CEQ R1, @KEY2
 JEQ @PRE_CONFIG_DESP_HOR_DEZ
 NOP
 JMP @CONFIG_DESP_HOR_UN
 
 %LABEL PRE_CONFIG_DESP_HOR_DEZ
-STA R4, @CLEAR_KEY1            # RST KEY2
+STA R4, @CLEAR_KEY2            # RST KEY2
 LDI R4, $32                    # LOAD 32 em R4
 STA R4, @LEDR                  # Acende quinto LEDR
 
@@ -332,13 +331,13 @@ STA R4, @LEDR                  # Acende quinto LEDR
 LDA R4, @SWR
 STA R4, @DESP_HOR_DEZ
 STA R4, @HEX5
-CEQ R1, @KEY1
+CEQ R1, @KEY2
 JEQ @FIM_CONFIG_DESPERTADOR
 NOP
 JMP @CONFIG_DESP_HOR_DEZ
 
 %LABEL FIM_CONFIG_DESPERTADOR
-STA R4, @CLEAR_KEY1
+STA R4, @CLEAR_KEY2
 STA R0, @LEDR
 STA R0, @HEX0
 STA R0, @HEX1
