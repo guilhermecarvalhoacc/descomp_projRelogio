@@ -6,7 +6,7 @@ entity relogio is
   generic   (
     DataWidth   : natural  :=  8;
 	 dataWidthRom : natural := 16;
-	 addrWidthRom : natural := 9;
+	 addrWidthRom : natural :=  9;
     simulacao   : boolean  := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
 
@@ -85,6 +85,9 @@ architecture arch_name of relogio is
   signal saida_debounceKEY0, saida_debounceKEY1 : std_logic;
   signal limpa_leituraKEY0,  limpa_leituraKEY1  : std_logic;
   
+  signal clock_flipflop2,    clock_flipflop3    : std_logic;
+  signal saida_debounceKEY2, saida_debounceKEY3 : std_logic;
+  signal limpa_leituraKEY2,  limpa_leituraKEY3  : std_logic;
   --teste
   
 begin
@@ -188,23 +191,22 @@ buffer_3state : entity work.buffer_3_state_8portas
           port map (entrada => SW(7 downto 0), habilita => habilita_buffer, saida => dadolidoRAM);
 			 
 buffer_3state_1SW8 : entity work.buffer_3_state_1porta
-          port map (entrada =>SW(8), habilita => habilita_sw8, saida => dadolidoRAM);
+          port map (entrada => SW(8), habilita => habilita_sw8, saida => dadolidoRAM);
 			 
 buffer_3state_1SW9 : entity work.buffer_3_state_1porta
-          port map (entrada =>SW(9), habilita => habilita_sw9, saida => dadolidoRAM);
+          port map (entrada => SW(9), habilita => habilita_sw9, saida => dadolidoRAM);
 
 buffer_3state_KEY0 : entity work.buffer_3_state_1porta
           port map (entrada => saida_debounceKEY0, habilita => habilita_KEY0, saida => dadolidoRAM);
 
 buffer_3state_KEY1 : entity work.buffer_3_state_1porta
-          port map (entrada => saida_debounceKEY1,  habilita => habilita_KEY1, saida => dadolidoRAM);		 
+          port map (entrada => saida_debounceKEY1, habilita => habilita_KEY1, saida => dadolidoRAM);		 
 			
 buffer_3state_KEY2 : entity work.buffer_3_state_1porta
-          port map (entrada =>KEY(2), habilita => habilita_KEY2,saida => dadolidoRAM);		 
-
+          port map (entrada => saida_debounceKEY2, habilita => habilita_KEY2, saida => dadolidoRAM);		 
 
 buffer_3state_KEY3 : entity work.buffer_3_state_1porta
-          port map (entrada =>KEY(3), habilita => habilita_KEY3, saida => dadolidoRAM);		 
+          port map (entrada => saida_debounceKEY3, habilita => habilita_KEY3, saida => dadolidoRAM);		 
  
  
 buffer_FPGA_RESET : entity work.buffer_3_state_1porta
@@ -223,6 +225,12 @@ flipflop_debounceKEY0  : entity work.flipflop generic map (larguraDados => 1)
 
 flipflop_debounce_KEY1 : entity work.flipflop generic map (larguraDados => 1)
           port map (DIN => '1', DOUT => saida_debounceKEY1, ENABLE => '1', CLK => clock_flipflop1, RST => limpa_leituraKEY1);
+
+flipflop_debounceKEY2  : entity work.flipflop generic map (larguraDados => 1)
+          port map (DIN => '1', DOUT => saida_debounceKEY2, ENABLE => '1', CLK => clock_flipflop2, RST => limpa_leituraKEY1);
+
+flipflop_debounce_KEY3 : entity work.flipflop generic map (larguraDados => 1)
+          port map (DIN => '1', DOUT => saida_debounceKEY3, ENABLE => '1', CLK => clock_flipflop3, RST => limpa_leituraKEY2);
 
 
 divisorSec : entity work.divisorGenerico generic map (divisor => 25000000)   -- divide por 10.
@@ -264,8 +272,10 @@ habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2
 habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
 habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
 
-limpa_leituraKEY0 <=      enderecoRAM(0)  and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
-limpa_leituraKEY1 <= (not enderecoRAM(0)) and enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY0 <=      enderecoRAM(0)  and      enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY1 <= (not enderecoRAM(0)) and      enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY2 <=      enderecoRAM(0)  and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY3 <= (not enderecoRAM(0)) and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 
 --habilita_KEY0_teste
 --limpa_leituraKEY0_teste

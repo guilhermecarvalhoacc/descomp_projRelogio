@@ -33,12 +33,12 @@ DIC_CONSTANTES_MEM_ADDR = {
     'ADDR_COUNTER_HOR_UN'           :  '14',    #RAM[14]  - @14
     'ADDR_COUNTER_HOR_DEZ'          :  '15',    #RAM[15]  - @15
 
-    'ADDR_LIMIT_SEG_UN'             :  '16',    #RAM[16]  - @16
-    'ADDR_LIMIT_SEG_DEZ'            :  '17',    #RAM[17]  - @17
-    'ADDR_LIMIT_MIN_UN'             :  '18',    #RAM[18]  - @18
-    'ADDR_LIMIT_MIN_DEZ'            :  '19',    #RAM[19]  - @19
-    'ADDR_LIMIT_HOR_UN'             :  '20',    #RAM[20]  - @20
-    'ADDR_LIMIT_HOR_DEZ'            :  '21',    #RAM[21]  - @21
+    'DESP_SEG_UN'                   :  '16',    #RAM[16]  - @16
+    'DESP_SEG_DEZ'                  :  '17',    #RAM[17]  - @17
+    'DESP_MIN_UN'                   :  '18',    #RAM[18]  - @18
+    'DESP_MIN_DEZ'                  :  '19',    #RAM[19]  - @19
+    'DESP_HOR_UN'                   :  '20',    #RAM[20]  - @20
+    'DESP_HOR_DEZ'                  :  '21',    #RAM[21]  - @21
 
     'ADDR_FLAG_OVERFLOW'            :  '22',    #RAM[22]  - @22
     'ADDR_FLAG_INIBICAO'            :  '23',    #RAM[23]  - @23
@@ -64,8 +64,10 @@ DIC_CONSTANTES_MEM_ADDR = {
     "KEY2"                          : "354",
     "KEY3"                          : "355",
     "FPGA_RESET"                    : "356",
-    "CLEAR_KEY0"                    : "511",
-    "CLEAR_KEY1"                    : "510"
+    "CLEAR_KEY3"                    : "508",
+    "CLEAR_KEY2"                    : "509",
+    "CLEAR_KEY1"                    : "510",
+    "CLEAR_KEY0"                    : "511"
 }
 
 

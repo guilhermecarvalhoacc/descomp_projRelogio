@@ -1,54 +1,283 @@
-tmp (0) := JSR & R0 & '0' & x"14"; 	-- JSR @INICIA_MEMORIA | 
+tmp (0) := JSR & R0 & '0' & x"0B"; 	-- JSR @INICIA_MEMORIA | 
 tmp (1) := NOP & R0 & '0' & x"00";
-tmp (2) := STA & R0 & '0' & x"02"; 	-- STA R0, @ADDR_COUNTER_SEG_UN | 
-tmp (3) := STA & R1 & '0' & x"03"; 	-- STA R1, @ADDR_COUNTER_SEG_DEZ | 
-tmp (4) := STA & R2 & '0' & x"04"; 	-- STA R2, @ADDR_COUNTER_MIN_UN | 
-tmp (5) := STA & R2 & '0' & x"02"; 	-- STA R2, @ADDR_COUNTER_SEG_UN | 
-tmp (6) := STA & R2 & '0' & x"03"; 	-- STA R2, @ADDR_COUNTER_SEG_DEZ | 
-tmp (7) := STA & R2 & '0' & x"04"; 	-- STA R2, @ADDR_COUNTER_MIN_UN | 
-tmp (8) := STA & R2 & '0' & x"05"; 	-- STA R2, @ADDR_COUNTER_MIN_DEZ | 
-tmp (9) := STA & R2 & '0' & x"06"; 	-- STA R2, @ADDR_COUNTER_HOR_UN | 
-tmp (10) := STA & R2 & '0' & x"07"; 	-- STA R2, @ADDR_COUNTER_HOR_DEZ | 
-tmp (11) := STA & R1 & '0' & x"10"; 	-- STA R1, @DESP_SEG_UN | 
-tmp (12) := STA & R1 & '0' & x"11"; 	-- STA R1, @DESP_SEG_DEZ | 
-tmp (13) := STA & R1 & '0' & x"12"; 	-- STA R1, @DESP_MIN_UN | 
-tmp (14) := STA & R1 & '0' & x"13"; 	-- STA R1, @DESP_MIN_DEZ | 
-tmp (15) := STA & R1 & '0' & x"14"; 	-- STA R1, @DESP_HOR_UN | 
-tmp (16) := STA & R1 & '0' & x"15"; 	-- STA R1, @DESP_HOR_DEZ | 
 -- %LABEL MAIN_LOOP
-tmp (17) := JSR & R0 & '0' & x"26"; 	-- JSR @SR_REFRESH_DISPLAY | 
-tmp (18) := NOP & R0 & '0' & x"00";
-tmp (19) := JMP & R0 & '0' & x"11"; 	-- JMP @MAIN_LOOP | 
+tmp (2) := JSR & R0 & '0' & x"1F"; 	-- JSR @SR_REFRESH_DISPLAY | 
+tmp (3) := NOP & R0 & '0' & x"00";
+tmp (4) := JSR & R0 & '0' & x"2C"; 	-- JSR @CONFIG_HORARIO | 
+tmp (5) := NOP & R0 & '0' & x"00";
+tmp (6) := JSR & R0 & '0' & x"B8"; 	-- JSR @CONFIG_DESPERTADOR | 
+tmp (7) := NOP & R0 & '0' & x"00";
+tmp (8) := JSR & R0 & '0' & x"71"; 	-- JSR @INCREMENTA_HORARIO | 
+tmp (9) := NOP & R0 & '0' & x"00";
+tmp (10) := JMP & R0 & '0' & x"02"; 	-- JMP @MAIN_LOOP | 
 -- %LABEL INICIA_MEMORIA
-tmp (20) := LDI & R0 & '0' & x"00"; 	-- LDI R0, $0 | 
-tmp (21) := LDI & R1 & '0' & x"01"; 	-- LDI R1, $1 | 
-tmp (22) := LDI & R2 & '0' & x"09"; 	-- LDI R2, $9 | 
-tmp (23) := STA & R0 & '0' & x"02"; 	-- STA R0, @ADDR_COUNTER_SEG_UN | 
-tmp (24) := STA & R0 & '0' & x"03"; 	-- STA R0, @ADDR_COUNTER_SEG_DEZ | 
-tmp (25) := STA & R0 & '0' & x"04"; 	-- STA R0, @ADDR_COUNTER_MIN_UN | 
-tmp (26) := STA & R0 & '0' & x"05"; 	-- STA R0, @ADDR_COUNTER_MIN_DEZ | 
-tmp (27) := STA & R0 & '0' & x"06"; 	-- STA R0, @ADDR_COUNTER_HOR_UN | 
-tmp (28) := STA & R0 & '0' & x"07"; 	-- STA R0, @ADDR_COUNTER_HOR_DEZ | 
-tmp (29) := STA & R0 & '0' & x"10"; 	-- STA R0, @DESP_SEG_UN | 
-tmp (30) := STA & R0 & '0' & x"11"; 	-- STA R0, @DESP_SEG_DEZ | 
-tmp (31) := STA & R0 & '0' & x"12"; 	-- STA R0, @DESP_MIN_UN | 
-tmp (32) := STA & R0 & '0' & x"13"; 	-- STA R0, @DESP_MIN_DEZ | 
-tmp (33) := STA & R0 & '0' & x"14"; 	-- STA R0, @DESP_HOR_UN | 
-tmp (34) := STA & R0 & '0' & x"15"; 	-- STA R0, @DESP_HOR_DEZ | 
-tmp (35) := STA & R0 & '1' & x"64"; 	-- STA R0, @FPGA_RESET | 
-tmp (36) := STA & R0 & '1' & x"00"; 	-- STA R0, @LEDR | 
-tmp (37) := RET & R0 & '0' & x"00";
+tmp (11) := LDI & R0 & '0' & x"00"; 	-- LDI R0, $0 | 
+tmp (12) := LDI & R1 & '0' & x"01"; 	-- LDI R1, $1 | 
+tmp (13) := LDI & R2 & '0' & x"05"; 	-- LDI R2, $5 | 
+tmp (14) := LDI & R3 & '0' & x"09"; 	-- LDI R3, $9 | 
+tmp (15) := STA & R1 & '0' & x"01"; 	-- STA R1, @ADDR_CTE1 | 
+tmp (16) := STA & R0 & '0' & x"0A"; 	-- STA R0, @ADDR_COUNTER_SEG_UN | 
+tmp (17) := STA & R0 & '0' & x"0B"; 	-- STA R0, @ADDR_COUNTER_SEG_DEZ | 
+tmp (18) := STA & R0 & '0' & x"0C"; 	-- STA R0, @ADDR_COUNTER_MIN_UN | 
+tmp (19) := STA & R0 & '0' & x"0D"; 	-- STA R0, @ADDR_COUNTER_MIN_DEZ | 
+tmp (20) := STA & R0 & '0' & x"0E"; 	-- STA R0, @ADDR_COUNTER_HOR_UN | 
+tmp (21) := STA & R0 & '0' & x"0F"; 	-- STA R0, @ADDR_COUNTER_HOR_DEZ | 
+tmp (22) := STA & R0 & '0' & x"10"; 	-- STA R0, @DESP_SEG_UN | 
+tmp (23) := STA & R0 & '0' & x"11"; 	-- STA R0, @DESP_SEG_DEZ | 
+tmp (24) := STA & R0 & '0' & x"12"; 	-- STA R0, @DESP_MIN_UN | 
+tmp (25) := STA & R0 & '0' & x"13"; 	-- STA R0, @DESP_MIN_DEZ | 
+tmp (26) := STA & R0 & '0' & x"14"; 	-- STA R0, @DESP_HOR_UN | 
+tmp (27) := STA & R0 & '0' & x"15"; 	-- STA R0, @DESP_HOR_DEZ | 
+tmp (28) := STA & R0 & '1' & x"64"; 	-- STA R0, @FPGA_RESET | 
+tmp (29) := STA & R0 & '1' & x"00"; 	-- STA R0, @LEDR | 
+tmp (30) := RET & R0 & '0' & x"00";
 -- %LABEL SR_REFRESH_DISPLAY
-tmp (38) := LDA & R3 & '0' & x"02"; 	-- LDA R3, @ADDR_COUNTER_SEG_UN | -- LOAD UNIDADE
-tmp (39) := STA & R3 & '1' & x"20"; 	-- STA R3, @HEX0 | -- ARMAZENA EM HEX0
-tmp (40) := LDA & R3 & '0' & x"03"; 	-- LDA R3, @ADDR_COUNTER_SEG_DEZ | -- LOAD DEZENA 
-tmp (41) := STA & R3 & '1' & x"21"; 	-- STA R3, @HEX1 | -- ARMAZENA EM HEX1
-tmp (42) := LDA & R3 & '0' & x"04"; 	-- LDA R3, @ADDR_COUNTER_MIN_UN | -- LOAD CENTENA
-tmp (43) := STA & R3 & '1' & x"22"; 	-- STA R3, @HEX2 | -- ARMAZENA EM HEX2
-tmp (44) := LDA & R3 & '0' & x"05"; 	-- LDA R3, @ADDR_COUNTER_MIN_DEZ | -- LOAD MILHAR
-tmp (45) := STA & R3 & '1' & x"23"; 	-- STA R3, @HEX3 | -- ARMAZENA EM HEX3
-tmp (46) := LDA & R3 & '0' & x"06"; 	-- LDA R3, @ADDR_COUNTER_HOR_UN | -- LOAD DEZ.MILHAR 
-tmp (47) := STA & R3 & '1' & x"24"; 	-- STA R3, @HEX4 | -- ARMAZENA EM HEX4
-tmp (48) := LDA & R3 & '0' & x"07"; 	-- LDA R3, @ADDR_COUNTER_HOR_DEZ | -- LOAD CEN.MILHAR 
-tmp (49) := STA & R3 & '1' & x"25"; 	-- STA R3, @HEX5 | -- ARMAZENA EM HEX5
-tmp (50) := RET & R0 & '0' & x"00";
+tmp (31) := LDA & R4 & '0' & x"0A"; 	-- LDA R4, @ADDR_COUNTER_SEG_UN | -- LOAD UNIDADE
+tmp (32) := STA & R4 & '1' & x"20"; 	-- STA R4, @HEX0 | -- ARMAZENA EM HEX0
+tmp (33) := LDA & R4 & '0' & x"0B"; 	-- LDA R4, @ADDR_COUNTER_SEG_DEZ | -- LOAD DEZENA 
+tmp (34) := STA & R4 & '1' & x"21"; 	-- STA R4, @HEX1 | -- ARMAZENA EM HEX1
+tmp (35) := LDA & R4 & '0' & x"0C"; 	-- LDA R4, @ADDR_COUNTER_MIN_UN | -- LOAD CENTENA
+tmp (36) := STA & R4 & '1' & x"22"; 	-- STA R4, @HEX2 | -- ARMAZENA EM HEX2
+tmp (37) := LDA & R4 & '0' & x"0D"; 	-- LDA R4, @ADDR_COUNTER_MIN_DEZ | -- LOAD MILHAR
+tmp (38) := STA & R4 & '1' & x"23"; 	-- STA R4, @HEX3 | -- ARMAZENA EM HEX3
+tmp (39) := LDA & R4 & '0' & x"0E"; 	-- LDA R4, @ADDR_COUNTER_HOR_UN | -- LOAD DEZ.MILHAR 
+tmp (40) := STA & R4 & '1' & x"24"; 	-- STA R4, @HEX4 | -- ARMAZENA EM HEX4
+tmp (41) := LDA & R4 & '0' & x"0F"; 	-- LDA R4, @ADDR_COUNTER_HOR_DEZ | -- LOAD CEN.MILHAR 
+tmp (42) := STA & R4 & '1' & x"25"; 	-- STA R4, @HEX5 | -- ARMAZENA EM HEX5
+tmp (43) := RET & R0 & '0' & x"00";
+-- %LABEL CONFIG_HORARIO
+tmp (44) := JMP & R0 & '0' & x"2E"; 	-- JMP @SHOULD_CONFIG | 
+tmp (45) := NOP & R0 & '0' & x"00";
+-- %LABEL SHOULD_CONFIG
+tmp (46) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (47) := JEQ & R0 & '0' & x"32"; 	-- JEQ @PRE_CONFIG_SEG_UN | 
+tmp (48) := NOP & R0 & '0' & x"00";
+tmp (49) := RET & R0 & '0' & x"00";
+-- %LABEL PRE_CONFIG_SEG_UN
+tmp (50) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (51) := LDI & R4 & '0' & x"01"; 	-- LDI R4, $1 |  LOAD 1 em R4
+tmp (52) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende primeiro LEDR
+-- %LABEL CONFIG_SEG_UN
+tmp (53) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (54) := STA & R4 & '0' & x"0A"; 	-- STA R4, @ADDR_COUNTER_SEG_UN | 
+tmp (55) := STA & R4 & '1' & x"20"; 	-- STA R4, @HEX0 | 
+tmp (56) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (57) := JEQ & R0 & '0' & x"3C"; 	-- JEQ @PRE_CONFIG_SEG_DEZ | 
+tmp (58) := NOP & R0 & '0' & x"00";
+tmp (59) := JMP & R0 & '0' & x"35"; 	-- JMP @CONFIG_SEG_UN | 
+-- %LABEL PRE_CONFIG_SEG_DEZ
+tmp (60) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (61) := LDI & R4 & '0' & x"02"; 	-- LDI R4, $2 |  LOAD 2 em R4
+tmp (62) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende segundo LEDR
+-- %LABEL CONFIG_SEG_DEZ
+tmp (63) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (64) := STA & R4 & '0' & x"0B"; 	-- STA R4, @ADDR_COUNTER_SEG_DEZ | 
+tmp (65) := STA & R4 & '1' & x"21"; 	-- STA R4, @HEX1 | 
+tmp (66) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (67) := JEQ & R0 & '0' & x"46"; 	-- JEQ @PRE_CONFIG_MIN_UN | 
+tmp (68) := NOP & R0 & '0' & x"00";
+tmp (69) := JMP & R0 & '0' & x"3F"; 	-- JMP @CONFIG_SEG_DEZ | 
+-- %LABEL PRE_CONFIG_MIN_UN
+tmp (70) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (71) := LDI & R4 & '0' & x"04"; 	-- LDI R4, $4 |  LOAD 4 em R4
+tmp (72) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende terceiro LEDR
+-- %LABEL CONFIG_MIN_UN
+tmp (73) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (74) := STA & R4 & '0' & x"0C"; 	-- STA R4, @ADDR_COUNTER_MIN_UN | 
+tmp (75) := STA & R4 & '1' & x"22"; 	-- STA R4, @HEX2 | 
+tmp (76) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (77) := JEQ & R0 & '0' & x"50"; 	-- JEQ @PRE_CONFIG_MIN_DEZ | 
+tmp (78) := NOP & R0 & '0' & x"00";
+tmp (79) := JMP & R0 & '0' & x"49"; 	-- JMP @CONFIG_MIN_UN | 
+-- %LABEL PRE_CONFIG_MIN_DEZ
+tmp (80) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (81) := LDI & R4 & '0' & x"08"; 	-- LDI R4, $8 |  LOAD 8 em R4
+tmp (82) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quarto LEDR
+-- %LABEL CONFIG_MIN_DEZ
+tmp (83) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (84) := STA & R4 & '0' & x"0D"; 	-- STA R4, @ADDR_COUNTER_MIN_DEZ | 
+tmp (85) := STA & R4 & '1' & x"23"; 	-- STA R4, @HEX3 | 
+tmp (86) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (87) := JEQ & R0 & '0' & x"5A"; 	-- JEQ @PRE_CONFIG_HOR_UN | 
+tmp (88) := NOP & R0 & '0' & x"00";
+tmp (89) := JMP & R0 & '0' & x"53"; 	-- JMP @CONFIG_MIN_DEZ | 
+-- %LABEL PRE_CONFIG_HOR_UN
+tmp (90) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (91) := LDI & R4 & '0' & x"10"; 	-- LDI R4, $16 |  LOAD 16 em R4
+tmp (92) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quarto LEDR
+-- %LABEL CONFIG_HOR_UN
+tmp (93) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (94) := STA & R4 & '0' & x"0E"; 	-- STA R4, @ADDR_COUNTER_HOR_UN | 
+tmp (95) := STA & R4 & '1' & x"24"; 	-- STA R4, @HEX4 | 
+tmp (96) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (97) := JEQ & R0 & '0' & x"64"; 	-- JEQ @PRE_CONFIG_HOR_DEZ | 
+tmp (98) := NOP & R0 & '0' & x"00";
+tmp (99) := JMP & R0 & '0' & x"5D"; 	-- JMP @CONFIG_HOR_UN | 
+-- %LABEL PRE_CONFIG_HOR_DEZ
+tmp (100) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 |  RST KEY1
+tmp (101) := LDI & R4 & '0' & x"20"; 	-- LDI R4, $32 |  LOAD 32 em R4
+tmp (102) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quinto LEDR
+-- %LABEL CONFIG_HOR_DEZ
+tmp (103) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (104) := STA & R4 & '0' & x"0F"; 	-- STA R4, @ADDR_COUNTER_HOR_DEZ | 
+tmp (105) := STA & R4 & '1' & x"25"; 	-- STA R4, @HEX5 | 
+tmp (106) := CEQ & R1 & '1' & x"61"; 	-- CEQ R1, @KEY1 | 
+tmp (107) := JEQ & R0 & '0' & x"6E"; 	-- JEQ @FIM_CONFIG | 
+tmp (108) := NOP & R0 & '0' & x"00";
+tmp (109) := JMP & R0 & '0' & x"67"; 	-- JMP @CONFIG_HOR_DEZ | 
+-- %LABEL FIM_CONFIG
+tmp (110) := STA & R4 & '1' & x"FE"; 	-- STA R4, @CLEAR_KEY1 | 
+tmp (111) := STA & R0 & '1' & x"00"; 	-- STA R0, @LEDR | 
+tmp (112) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_HORARIO
+tmp (113) := JMP & R0 & '0' & x"73"; 	-- JMP @VERIFICA_INCREMENTO | 
+tmp (114) := NOP & R0 & '0' & x"00";
+-- %LABEL VERIFICA_INCREMENTO
+tmp (115) := CEQ & R1 & '1' & x"60"; 	-- CEQ R1, @KEY0 | 
+tmp (116) := JEQ & R0 & '0' & x"77"; 	-- JEQ @INCREMENTA_SEGUNDO_UN | 
+tmp (117) := NOP & R0 & '0' & x"00";
+tmp (118) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_SEGUNDO_UN
+tmp (119) := STA & R4 & '1' & x"FF"; 	-- STA R4, @CLEAR_KEY0 | 
+tmp (120) := CEQ & R3 & '0' & x"0A"; 	-- CEQ R3, @ADDR_COUNTER_SEG_UN |  seg_un == 9?
+tmp (121) := JEQ & R0 & '0' & x"7F"; 	-- JEQ @INCREMENTA_SEG_DEZ |  if seg_un == 9: seg_dez++
+tmp (122) := NOP & R0 & '0' & x"00";
+tmp (123) := LDA & R4 & '0' & x"0A"; 	-- LDA R4, @ADDR_COUNTER_SEG_UN | 
+tmp (124) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (125) := STA & R4 & '0' & x"0A"; 	-- STA R4, @ADDR_COUNTER_SEG_UN | 
+tmp (126) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_SEG_DEZ
+tmp (127) := STA & R0 & '0' & x"0A"; 	-- STA R0, @ADDR_COUNTER_SEG_UN |  if seg_un == 9: seg_un = 0
+tmp (128) := CEQ & R2 & '0' & x"0B"; 	-- CEQ R2, @ADDR_COUNTER_SEG_DEZ |  seg_dez == 5?
+tmp (129) := JEQ & R0 & '0' & x"87"; 	-- JEQ @INCREMENTA_MIN_UN |  if seg_dez == 5: min_un++
+tmp (130) := NOP & R0 & '0' & x"00";
+tmp (131) := LDA & R4 & '0' & x"0B"; 	-- LDA R4, @ADDR_COUNTER_SEG_DEZ | 
+tmp (132) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (133) := STA & R4 & '0' & x"0B"; 	-- STA R4, @ADDR_COUNTER_SEG_DEZ | 
+tmp (134) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_MIN_UN
+tmp (135) := STA & R0 & '0' & x"0B"; 	-- STA R0, @ADDR_COUNTER_SEG_DEZ | 
+tmp (136) := CEQ & R3 & '0' & x"0C"; 	-- CEQ R3, @ADDR_COUNTER_MIN_UN |  min_un == 9?
+tmp (137) := JEQ & R0 & '0' & x"8F"; 	-- JEQ @INCREMENTA_MIN_DEZ |  if min_un == 9: min_dez++
+tmp (138) := NOP & R0 & '0' & x"00";
+tmp (139) := LDA & R4 & '0' & x"0C"; 	-- LDA R4, @ADDR_COUNTER_MIN_UN | 
+tmp (140) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (141) := STA & R4 & '0' & x"0C"; 	-- STA R4, @ADDR_COUNTER_MIN_UN | 
+tmp (142) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_MIN_DEZ
+tmp (143) := STA & R0 & '0' & x"0C"; 	-- STA R0, @ADDR_COUNTER_MIN_UN |  if min_un == 9: min_un = 0
+tmp (144) := CEQ & R2 & '0' & x"0D"; 	-- CEQ R2, @ADDR_COUNTER_MIN_DEZ |  min_dez == 5?
+tmp (145) := JEQ & R0 & '0' & x"97"; 	-- JEQ @INCREMENTA_HOR_UN |  if min_dez == 5: hor_un ++
+tmp (146) := NOP & R0 & '0' & x"00";
+tmp (147) := LDA & R4 & '0' & x"0D"; 	-- LDA R4, @ADDR_COUNTER_MIN_DEZ | 
+tmp (148) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (149) := STA & R4 & '0' & x"0D"; 	-- STA R4, @ADDR_COUNTER_MIN_DEZ | 
+tmp (150) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_HOR_UN
+tmp (151) := STA & R0 & '0' & x"0D"; 	-- STA R0, @ADDR_COUNTER_MIN_DEZ |  if seg_un == 9: seg_un = 0
+tmp (152) := LDI & R4 & '0' & x"02"; 	-- LDI R4, $2 | 
+tmp (153) := CEQ & R4 & '0' & x"0F"; 	-- CEQ R4, @ADDR_COUNTER_HOR_DEZ | 
+tmp (154) := JEQ & R0 & '0' & x"9E"; 	-- JEQ @INC_HOR_ATE_3 | Se o horário for maior que 20h, a unidade da hora vai até 3, caso contrário vai até 9
+tmp (155) := NOP & R0 & '0' & x"00";
+tmp (156) := JMP & R0 & '0' & x"A6"; 	-- JMP @INC_HOR_ATE_9 | 
+tmp (157) := NOP & R0 & '0' & x"00";
+-- %LABEL INC_HOR_ATE_3
+tmp (158) := LDI & R4 & '0' & x"03"; 	-- LDI R4, $3 | 
+tmp (159) := CEQ & R4 & '0' & x"0E"; 	-- CEQ R4, @ADDR_COUNTER_HOR_UN | 
+tmp (160) := JEQ & R0 & '0' & x"AD"; 	-- JEQ @INCREMENTA_HOR_DEZ | 
+tmp (161) := NOP & R0 & '0' & x"00";
+tmp (162) := LDA & R4 & '0' & x"0E"; 	-- LDA R4, @ADDR_COUNTER_HOR_UN | 
+tmp (163) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (164) := STA & R4 & '0' & x"0E"; 	-- STA R4, @ADDR_COUNTER_HOR_UN | 
+tmp (165) := RET & R0 & '0' & x"00";
+-- %LABEL INC_HOR_ATE_9
+tmp (166) := CEQ & R3 & '0' & x"0E"; 	-- CEQ R3, @ADDR_COUNTER_HOR_UN | 
+tmp (167) := JEQ & R0 & '0' & x"AD"; 	-- JEQ @INCREMENTA_HOR_DEZ | 
+tmp (168) := NOP & R0 & '0' & x"00";
+tmp (169) := LDA & R4 & '0' & x"0E"; 	-- LDA R4, @ADDR_COUNTER_HOR_UN | 
+tmp (170) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (171) := STA & R4 & '0' & x"0E"; 	-- STA R4, @ADDR_COUNTER_HOR_UN | 
+tmp (172) := RET & R0 & '0' & x"00";
+-- %LABEL INCREMENTA_HOR_DEZ
+tmp (173) := STA & R0 & '0' & x"0E"; 	-- STA R0, @ADDR_COUNTER_HOR_UN |  if hor_un == 9: hor_un = 0 | se for maior que 10, vai até 12 só TODO
+tmp (174) := LDI & R4 & '0' & x"02"; 	-- LDI R4, $2 | 
+tmp (175) := CEQ & R4 & '0' & x"0F"; 	-- CEQ R4, @ADDR_COUNTER_HOR_DEZ |  TODO: esse limite também é vagabundo, se for 2, já completou, se for 0 ou 1, soma :D
+tmp (176) := JEQ & R0 & '0' & x"B6"; 	-- JEQ @FIM_INCREMENTA |  if seg_dez == 9: min_un++
+tmp (177) := NOP & R0 & '0' & x"00";
+tmp (178) := LDA & R4 & '0' & x"0F"; 	-- LDA R4, @ADDR_COUNTER_HOR_DEZ | 
+tmp (179) := SOMA & R4 & '0' & x"01"; 	-- SOMA R4, @ADDR_CTE1 | 
+tmp (180) := STA & R4 & '0' & x"0F"; 	-- STA R4, @ADDR_COUNTER_HOR_DEZ | 
+tmp (181) := RET & R0 & '0' & x"00";
+-- %LABEL FIM_INCREMENTA
+tmp (182) := STA & R0 & '0' & x"0F"; 	-- STA R0, @ADDR_COUNTER_HOR_DEZ | 
+tmp (183) := RET & R0 & '0' & x"00";
+-- %LABEL CONFIG_DESPERTADOR
+tmp (184) := JMP & R0 & '0' & x"BA"; 	-- JMP @SHOULD_CONFIG_DESP | 
+tmp (185) := NOP & R0 & '0' & x"00";
+-- %LABEL SHOULD_CONFIG_DESP
+tmp (186) := CEQ & R1 & '1' & x"62"; 	-- CEQ R1, @KEY2 | Verifica KEY2 pressionada
+tmp (187) := JEQ & R0 & '0' & x"BE"; 	-- JEQ @PRE_CONFIG_DESP_MIN_UN | se foi pressionada começa configuração
+tmp (188) := NOP & R0 & '0' & x"00";
+tmp (189) := RET & R0 & '0' & x"00";
+-- %LABEL PRE_CONFIG_DESP_MIN_UN
+tmp (190) := STA & R4 & '1' & x"FC"; 	-- STA R4, @CLEAR_KEY2 |  RST KEY2
+tmp (191) := LDI & R4 & '0' & x"04"; 	-- LDI R4, $4 |  LOAD 4 em R4
+tmp (192) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende terceiro LEDR
+tmp (193) := STA & R0 & '0' & x"10"; 	-- STA R0, @DESP_SEG_UN |  Configura despertador para segundo==0
+tmp (194) := STA & R0 & '0' & x"11"; 	-- STA R0, @DESP_SEG_DEZ |  Configura despertador para segundo==0
+tmp (195) := STA & R0 & '1' & x"20"; 	-- STA R0, @HEX0 |  Zera os dois hex
+tmp (196) := STA & R0 & '1' & x"21"; 	-- STA R0, @HEX1 | 
+-- %LABEL CONFIG_DESP_MIN_UN
+tmp (197) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR |  Carrega o SW
+tmp (198) := STA & R4 & '0' & x"12"; 	-- STA R4, @DESP_MIN_UN |  Guarda na unidade de minuto (despertador)
+tmp (199) := STA & R4 & '1' & x"22"; 	-- STA R4, @HEX2 |  Mostra no hex2
+tmp (200) := CEQ & R1 & '1' & x"62"; 	-- CEQ R1, @KEY2 |  Key1 apertado?
+tmp (201) := JEQ & R0 & '0' & x"CC"; 	-- JEQ @PRE_CONFIG_DESP_MIN_DEZ |  if key1=1 : configura a dezena do minuto  (despertador)
+tmp (202) := NOP & R0 & '0' & x"00";
+tmp (203) := JMP & R0 & '0' & x"C5"; 	-- JMP @CONFIG_DESP_MIN_UN | 
+-- %LABEL PRE_CONFIG_DESP_MIN_DEZ
+tmp (204) := STA & R4 & '1' & x"FC"; 	-- STA R4, @CLEAR_KEY2 |  RST KEY2
+tmp (205) := LDI & R4 & '0' & x"08"; 	-- LDI R4, $8 |  LOAD 8 em R4
+tmp (206) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quarto LEDR
+-- %LABEL CONFIG_DESP_MIN_DEZ
+tmp (207) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR |  Carrega o SW
+tmp (208) := STA & R4 & '0' & x"13"; 	-- STA R4, @DESP_MIN_DEZ |  Guarda no despertador dezena de minuto
+tmp (209) := STA & R4 & '1' & x"23"; 	-- STA R4, @HEX3 |  mostra no hex3
+tmp (210) := CEQ & R1 & '1' & x"62"; 	-- CEQ R1, @KEY2 |  Key2 apertada?
+tmp (211) := JEQ & R0 & '0' & x"D6"; 	-- JEQ @PRE_CONFIG_DESP_HOR_UN | 
+tmp (212) := NOP & R0 & '0' & x"00";
+tmp (213) := JMP & R0 & '0' & x"CF"; 	-- JMP @CONFIG_DESP_MIN_DEZ | 
+-- %LABEL PRE_CONFIG_DESP_HOR_UN
+tmp (214) := STA & R4 & '1' & x"FC"; 	-- STA R4, @CLEAR_KEY2 |  RST KEY2
+tmp (215) := LDI & R4 & '0' & x"10"; 	-- LDI R4, $16 |  LOAD 16 em R4
+tmp (216) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quarto LEDR
+-- %LABEL CONFIG_DESP_HOR_UN
+tmp (217) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (218) := STA & R4 & '0' & x"14"; 	-- STA R4, @DESP_HOR_UN | 
+tmp (219) := STA & R4 & '1' & x"24"; 	-- STA R4, @HEX4 | 
+tmp (220) := CEQ & R1 & '1' & x"62"; 	-- CEQ R1, @KEY2 | 
+tmp (221) := JEQ & R0 & '0' & x"E0"; 	-- JEQ @PRE_CONFIG_DESP_HOR_DEZ | 
+tmp (222) := NOP & R0 & '0' & x"00";
+tmp (223) := JMP & R0 & '0' & x"D9"; 	-- JMP @CONFIG_DESP_HOR_UN | 
+-- %LABEL PRE_CONFIG_DESP_HOR_DEZ
+tmp (224) := STA & R4 & '1' & x"FC"; 	-- STA R4, @CLEAR_KEY2 |  RST KEY2
+tmp (225) := LDI & R4 & '0' & x"20"; 	-- LDI R4, $32 |  LOAD 32 em R4
+tmp (226) := STA & R4 & '1' & x"00"; 	-- STA R4, @LEDR |  Acende quinto LEDR
+-- %LABEL CONFIG_DESP_HOR_DEZ
+tmp (227) := LDA & R4 & '1' & x"40"; 	-- LDA R4, @SWR | 
+tmp (228) := STA & R4 & '0' & x"15"; 	-- STA R4, @DESP_HOR_DEZ | 
+tmp (229) := STA & R4 & '1' & x"25"; 	-- STA R4, @HEX5 | 
+tmp (230) := CEQ & R1 & '1' & x"62"; 	-- CEQ R1, @KEY2 | 
+tmp (231) := JEQ & R0 & '0' & x"EA"; 	-- JEQ @FIM_CONFIG_DESPERTADOR | 
+tmp (232) := NOP & R0 & '0' & x"00";
+tmp (233) := JMP & R0 & '0' & x"E3"; 	-- JMP @CONFIG_DESP_HOR_DEZ | 
+-- %LABEL FIM_CONFIG_DESPERTADOR
+tmp (234) := STA & R4 & '1' & x"FC"; 	-- STA R4, @CLEAR_KEY2 | 
+tmp (235) := STA & R0 & '1' & x"00"; 	-- STA R0, @LEDR | 
+tmp (236) := STA & R0 & '1' & x"20"; 	-- STA R0, @HEX0 | 
+tmp (237) := STA & R0 & '1' & x"21"; 	-- STA R0, @HEX1 | 
+tmp (238) := STA & R0 & '1' & x"22"; 	-- STA R0, @HEX2 | 
+tmp (239) := STA & R0 & '1' & x"23"; 	-- STA R0, @HEX3 | 
+tmp (240) := STA & R0 & '1' & x"24"; 	-- STA R0, @HEX4 | 
+tmp (241) := STA & R0 & '1' & x"25"; 	-- STA R0, @HEX5 | 
+tmp (242) := RET & R0 & '0' & x"00";
