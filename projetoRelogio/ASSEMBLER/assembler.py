@@ -22,16 +22,23 @@ OUT_BIN       = 'BIN.txt'
 LIST_OPCODES = ['NOP', 'LDA', 'SOMA', 'SUB', 'LDI', 'STA', 'JMP', 'JEQ', 'CEQ', 'JSR', 'RET']
 
 DIC_CONSTANTES_MEM_ADDR = {
-    #'ADDR_CTE0'                     :   '0',    #RAM[0]   - @0
-    'ADDR_CTE1'                      :   '1',    #RAM[1]   - @1 
-    #'ADDR_CTE9'                     :   '9',    #RAM[9]   - @9 
+    #'ADDR_CTE0'                    :   '0',    #RAM[0]   - @0
+    'ADDR_CTE1'                     :   '1',    #RAM[1]   - @1 
+    #'ADDR_CTE9'                    :   '9',    #RAM[9]   - @9 
 
-    'ADDR_COUNTER_SEG_UN'           :  '10',    #RAM[10]  - @10
-    'ADDR_COUNTER_SEG_DEZ'          :  '11',    #RAM[11]  - @11
-    'ADDR_COUNTER_MIN_UN'           :  '12',    #RAM[12]  - @12
-    'ADDR_COUNTER_MIN_DEZ'          :  '13',    #RAM[13]  - @13
-    'ADDR_COUNTER_HOR_UN'           :  '14',    #RAM[14]  - @14
-    'ADDR_COUNTER_HOR_DEZ'          :  '15',    #RAM[15]  - @15
+    'ADDR_COUNTER_SEG_UN'           :  '4',    #RAM[4]  - @4
+    'ADDR_COUNTER_SEG_DEZ'          :  '5',    #RAM[5]  - @5
+    'ADDR_COUNTER_MIN_UN'           :  '6',    #RAM[6]  - @6
+    'ADDR_COUNTER_MIN_DEZ'          :  '7',    #RAM[7]  - @7
+    'ADDR_COUNTER_HOR_UN'           :  '8',    #RAM[8]  - @8
+    'ADDR_COUNTER_HOR_DEZ'          :  '9',    #RAM[9]  - @9
+
+    'TEMP_SEG_UN'                   :  '10',    #RAM[10]  - @10
+    'TEMP_SEG_DEZ'                  :  '11',    #RAM[11]  - @11
+    'TEMP_MIN_UN'                   :  '12',    #RAM[12]  - @12
+    'TEMP_MIN_DEZ'                  :  '13',    #RAM[13]  - @13
+    'TEMP_HOR_UN'                   :  '14',    #RAM[14]  - @14
+    'TEMP_HOR_DEZ'                  :  '15',    #RAM[15]  - @15
 
     'DESP_SEG_UN'                   :  '16',    #RAM[16]  - @16
     'DESP_SEG_DEZ'                  :  '17',    #RAM[17]  - @17
@@ -41,9 +48,8 @@ DIC_CONSTANTES_MEM_ADDR = {
     'DESP_HOR_DEZ'                  :  '21',    #RAM[21]  - @21
 
     'FLAG_DESPERTOU'                :  '22',    #RAM[22]  - @22
-    'ADDR_FLAG_INIBICAO'            :  '23',    #RAM[23]  - @23
-    'LED_F_OVERFLOW'                : '257',    #RAM[258] - @258
-    'LED_F_INIBICAO'                : '258',    #RAM[258] - @258
+    'FLAG_TEMPORIZADOR_FINISHED'    :  '23',    #RAM[23]  - @23
+    'FLAG_SHOULD_DECREMENTAR'       :  '24',
 
     #Display
     'HEX0'                          : '288',
@@ -64,6 +70,8 @@ DIC_CONSTANTES_MEM_ADDR = {
     "KEY2"                          : "354",
     "KEY3"                          : "355",
     "FPGA_RESET"                    : "356",
+    "KEYTEMP"                       : "357",
+    "CLEAR_KEYTEMP"                 : "507",
     "CLEAR_KEY3"                    : "508",
     "CLEAR_KEY2"                    : "509",
     "CLEAR_KEY1"                    : "510",

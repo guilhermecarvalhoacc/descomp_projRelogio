@@ -78,6 +78,8 @@ architecture arch_name of relogio is
   signal habilita_KEY1            : std_logic;
   signal habilita_KEY2            : std_logic;
   signal habilita_KEY3            : std_logic;
+  signal habilita_KEYTEMP         : std_logic;
+
   signal habilita_FPGA_RESET      : std_logic;
   
   -- Debounce
@@ -88,6 +90,9 @@ architecture arch_name of relogio is
   signal clock_flipflop2,    clock_flipflop3    : std_logic;
   signal saida_debounceKEY2, saida_debounceKEY3 : std_logic;
   signal limpa_leituraKEY2,  limpa_leituraKEY3  : std_logic;
+  
+  signal saida_debounceKEYTEMP                  : std_logic;
+  signal limpa_leituraKEYTEMP                   : std_logic;
   --teste
   
 begin
@@ -207,6 +212,9 @@ buffer_3state_KEY2 : entity work.buffer_3_state_1porta
 
 buffer_3state_KEY3 : entity work.buffer_3_state_1porta
           port map (entrada => saida_debounceKEY3, habilita => habilita_KEY3, saida => dadolidoRAM);		 
+
+buffer_3state_KEYTEMP : entity work.buffer_3_state_1porta
+          port map (entrada => saida_debounceKEYTEMP, habilita => habilita_KEYTEMP, saida => dadolidoRAM);		 
  
  
 buffer_FPGA_RESET : entity work.buffer_3_state_1porta
@@ -237,6 +245,9 @@ flipflop_debounceKEY2  : entity work.flipflop generic map (larguraDados => 1)
 
 flipflop_debounce_KEY3 : entity work.flipflop generic map (larguraDados => 1)
           port map (DIN => '1', DOUT => saida_debounceKEY3, ENABLE => '1', CLK => clock_flipflop3, RST => limpa_leituraKEY3);
+
+flipflop_debounce_KEYTEMP : entity work.flipflop generic map (larguraDados => 1)
+          port map (DIN => '1', DOUT => saida_debounceKEYTEMP, ENABLE => '1', CLK => clock_flipflop0, RST => limpa_leituraKEYTEMP);
 
 
 divisorSec : entity work.divisorGenerico generic map (divisor => 25000000)   -- divide por 10.
@@ -272,16 +283,18 @@ habilita_sw9    <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2)  a
 
 
 -- para as chaves e reset da FPGA: 
-habilita_KEY0       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(0)  and  enderecoRAM(5);
-habilita_KEY1       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(1)  and  enderecoRAM(5);
-habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2)  and  enderecoRAM(5);
-habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
-habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
+habilita_KEY0         <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(0)  and  enderecoRAM(5);
+habilita_KEY1         <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(1)  and  enderecoRAM(5);
+habilita_KEY2         <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2)  and  enderecoRAM(5);
+habilita_KEY3         <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
+habilita_FPGA_RESET   <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
+habilita_KEYTEMP      <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(5)  and  enderecoRAM(5);
 
-limpa_leituraKEY0 <=      enderecoRAM(0)  and      enderecoRAM(1)  and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
-limpa_leituraKEY1 <= (not enderecoRAM(0)) and      enderecoRAM(1)  and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
-limpa_leituraKEY2 <=      enderecoRAM(0)  and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
-limpa_leituraKEY3 <= (not enderecoRAM(0)) and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY0    <=      enderecoRAM(0)  and      enderecoRAM(1)  and      enderecoRAM(2)  and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY1    <= (not enderecoRAM(0)) and      enderecoRAM(1)  and      enderecoRAM(2)  and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY2    <=      enderecoRAM(0)  and (not enderecoRAM(1)) and      enderecoRAM(2)  and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY3    <= (not enderecoRAM(0)) and (not enderecoRAM(1)) and      enderecoRAM(2)  and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEYTEMP <=      enderecoRAM(0)  and      enderecoRAM(1)  and (not enderecoRAM(2)) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 
 --habilita_KEY0_teste
 --limpa_leituraKEY0_teste
