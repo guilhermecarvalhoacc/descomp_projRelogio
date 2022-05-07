@@ -219,6 +219,12 @@ buffer_FPGA_RESET : entity work.buffer_3_state_1porta
 edgeDetector1 : entity work.edgeDetector(bordaSubida) 
           port map (clk => CLOCK_50, entrada => NOT KEY(1), saida => clock_flipflop1);
 
+edgeDetector2 : entity work.edgeDetector(bordaSubida) 
+          port map (clk => CLOCK_50, entrada => NOT KEY(2), saida => clock_flipflop2);
+
+edgeDetector3 : entity work.edgeDetector(bordaSubida) 
+          port map (clk => CLOCK_50, entrada => NOT KEY(3), saida => clock_flipflop3);
+
 
 flipflop_debounceKEY0  : entity work.flipflop generic map (larguraDados => 1)
           port map (DIN => '1', DOUT => saida_debounceKEY0, ENABLE => '1', CLK => clock_flipflop0, RST => limpa_leituraKEY0);
@@ -272,8 +278,8 @@ habilita_KEY2       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(2
 habilita_KEY3       <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(3)  and  enderecoRAM(5);
 habilita_FPGA_RESET <= saidas_decoder(5) and leituraRAM and saidas_decoder_end(4)  and  enderecoRAM(5);
 
-limpa_leituraKEY0 <=      enderecoRAM(0)  and      enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
-limpa_leituraKEY1 <= (not enderecoRAM(0)) and      enderecoRAM(1) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY0 <=      enderecoRAM(0)  and      enderecoRAM(1)  and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
+limpa_leituraKEY1 <= (not enderecoRAM(0)) and      enderecoRAM(1)  and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 limpa_leituraKEY2 <=      enderecoRAM(0)  and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 limpa_leituraKEY3 <= (not enderecoRAM(0)) and (not enderecoRAM(1)) and enderecoRAM(2) and enderecoRAM(3) and enderecoRAM(4) and enderecoRAM(5) and enderecoRAM(6) and enderecoRAM(7) and enderecoRAM(8) and escritaRAM;
 
