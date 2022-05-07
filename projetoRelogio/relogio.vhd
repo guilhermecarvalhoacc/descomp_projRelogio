@@ -242,7 +242,7 @@ flipflop_debounce_KEY3 : entity work.flipflop generic map (larguraDados => 1)
 divisorSec : entity work.divisorGenerico generic map (divisor => 25000000)   -- divide por 10.
 			 port map (clk => clk, saida_clk => muxBaseTempoA);
 	
-divisorFast : entity work.divisorGenerico generic map (divisor => 50000)   -- divide por 10.
+divisorFast : entity work.divisorGenerico generic map (divisor => 10000)   -- divide por 10.
 			 port map (clk => clk, saida_clk => muxBaseTempoB);
 	
 muxBaseTempo :  entity work.muxBaseTempo  generic map (larguraDados => 1)

@@ -15,7 +15,7 @@ REG2 -> CTE9
 REG3 -> REG uso genérico
 '''
 
-ASSEMBLY_FILE = 'assembly2.txt'
+ASSEMBLY_FILE = 'assembly3.txt'
 #ASSEMBLY_FILE = 'assembly_teste_incrementa.txt'
 OUT_BIN       = 'BIN.txt'
 
@@ -40,7 +40,7 @@ DIC_CONSTANTES_MEM_ADDR = {
     'DESP_HOR_UN'                   :  '20',    #RAM[20]  - @20
     'DESP_HOR_DEZ'                  :  '21',    #RAM[21]  - @21
 
-    'ADDR_FLAG_OVERFLOW'            :  '22',    #RAM[22]  - @22
+    'FLAG_DESPERTOU'                :  '22',    #RAM[22]  - @22
     'ADDR_FLAG_INIBICAO'            :  '23',    #RAM[23]  - @23
     'LED_F_OVERFLOW'                : '257',    #RAM[258] - @258
     'LED_F_INIBICAO'                : '258',    #RAM[258] - @258
@@ -93,8 +93,9 @@ def map_labels(assembly_lines):
     return 
 
 def get_opcode(assembly_line):
+    op = assembly_line.split(' ')[0]
     for opcode in LIST_OPCODES:
-        if opcode in assembly_line:
+        if opcode in op:
             assembly_line = assembly_line.replace(opcode, ' ').strip()
             return opcode, assembly_line 
 
@@ -169,6 +170,7 @@ def convert_assembly(assembly_lines):
             print(line)
             opcode, line_sem_opcode = get_opcode(line)
             
+            print(f'Opcode: {opcode} | linha toda: {line}\n')
             if opcode in ['JSR', 'JEQ', 'JMP']:
                 rom_addr = line_sem_opcode.replace('@', '').strip()
                 if rom_addr in DIC_CONSTANTES_MEM_ADDR:
