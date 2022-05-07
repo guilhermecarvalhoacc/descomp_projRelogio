@@ -227,10 +227,10 @@ flipflop_debounce_KEY1 : entity work.flipflop generic map (larguraDados => 1)
           port map (DIN => '1', DOUT => saida_debounceKEY1, ENABLE => '1', CLK => clock_flipflop1, RST => limpa_leituraKEY1);
 
 flipflop_debounceKEY2  : entity work.flipflop generic map (larguraDados => 1)
-          port map (DIN => '1', DOUT => saida_debounceKEY2, ENABLE => '1', CLK => clock_flipflop2, RST => limpa_leituraKEY1);
+          port map (DIN => '1', DOUT => saida_debounceKEY2, ENABLE => '1', CLK => clock_flipflop2, RST => limpa_leituraKEY2);
 
 flipflop_debounce_KEY3 : entity work.flipflop generic map (larguraDados => 1)
-          port map (DIN => '1', DOUT => saida_debounceKEY3, ENABLE => '1', CLK => clock_flipflop3, RST => limpa_leituraKEY2);
+          port map (DIN => '1', DOUT => saida_debounceKEY3, ENABLE => '1', CLK => clock_flipflop3, RST => limpa_leituraKEY3);
 
 
 divisorSec : entity work.divisorGenerico generic map (divisor => 25000000)   -- divide por 10.
